@@ -25,3 +25,12 @@ void Arrete::afficher() const
     std::cout << "          cout 2 : " << m_p2 << std::endl;
 }
 
+double Arrete::getPoids_1()
+{
+    return m_p1;
+}
+
+double Arrete::getPoids_2()
+{
+    return m_p2;
+}
