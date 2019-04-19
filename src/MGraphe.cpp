@@ -179,6 +179,7 @@ void Mgraphe::afficherGraphique()
         }
         std::cout << "===========================>" << poids_1 << " ; " << poids_2 << std::endl;
         graphique.addDisk(poids_1, poids_2, 2.0, "red");
+        m_tousLesPoids.push_back({poids_1, poids_2});
     }
     std::cout << "===========================>" << poids_1 << " ; " << poids_2 << std::endl;
 }

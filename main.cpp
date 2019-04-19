@@ -13,6 +13,10 @@ int main()
     g.trouverSolution();
     g.afficherGraph(svgout);
 
-    std::cout << "Projet Manhattan" << std::endl;
+    g.afficherGraphique();
+
+    system("start graphique.svg");
+    system("start graphe.svg");
+
     return 0;
 }
