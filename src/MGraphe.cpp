@@ -125,10 +125,10 @@ void afficherSolution(std::vector<bool> vect_bin)
 void Mgraphe::afficherGraph() const
 {
     std::string indice;
-    for(auto const&it : m_chemin)
+    /*for(auto const&it : m_chemin)
     {
         std::cout<<it.first<<std::endl;
-    }
+    }*/
     std::cout<<"entrer l'indice du graphe a afficher"<<std::endl;
     std::cin>>indice;
 
@@ -197,12 +197,10 @@ void Mgraphe::afficherGraphique()
                 poids_2 += arete_actuel->getPoids_2();
             }
         }
-<<<<<<< HEAD
-        graphique.addDisk(50+10*poids_1, 500-10*poids_2, 2.0, "red");
-=======
+
+        //graphique.addDisk(50+10*poids_1, 500-10*poids_2, 2.0, "red");
+
         graphique.addDisk(50+400.0*poids_1/m_ptot1, 500-400.0*poids_2/m_ptot2, 2.0, "red");
-        //m_tousLesPoids.push_back({poids_1, poids_2});
->>>>>>> benoit
     }
 }
 
@@ -310,18 +308,77 @@ void increment(std::vector<bool> &vec_bin)
 
 }
 
+void Mgraphe::departcpt(std::vector<bool>&vec_bin)
+{
+    int i = vec_bin.size() -1 ;
+    int nb = 0;
+    while(nb != m_sommet.size() -1)
+    {
+        vec_bin[i] = 1;
+        i--;
+        nb++;
+    }
+}
+
+void Mgraphe::arrivecpt(std::vector<bool>&vec_bin)
+{
+    int i = 0;
+    int nb = 0;
+    while(nb != m_sommet.size() -1)
+    {
+        vec_bin[i] = 1;
+        i++;
+        nb++;
+    }
+}
+
+/*void Mgraphe::trouverSolution()
+{
+    std::vector<bool> vect_bin;
+    vect_bin.resize(m_arrete.size() );
+
+    std::vector<bool> vect_bina;
+    vect_bina.resize(m_arrete.size() );
+
+    std::string name;
+    (*this).departcpt(vect_bin);
+    (*this).arrivecpt(vect_bina);
+    //afficherSolution(vect_bin);
+    //afficherSolution(vect_bina);
+
+    int i= 0;
+
+    do
+    {
+        i++;
+        increment(vect_bin) ;
+        if( (*this).ordre(vect_bin) == true )
+        {
+            //afficherSolution(vect_bin);
+            if( (*this).connexe(vect_bin) == true )
+            {
+                //afficherSolution(vect_bin);
+                name = "bf" + std::to_string(i);
+                m_chemin.insert({name,vect_bin});
+            }
+
+        }
+    }
+    while(vect_bin != vect_bina);
+}*/
+
 void Mgraphe::trouverSolution()
 {
     std::vector<bool> vect_bin;
     vect_bin.resize(m_arrete.size() );
     std::string name;
 
-    for(long i = 0 ; i < pow( 2, m_arrete.size() ) ; i++ )
+    for(long i = 0 ; i < std::pow( 2 , m_arrete.size() ) ; i++)
     {
         increment(vect_bin) ;
         if( (*this).ordre(vect_bin) == true )
         {
-
+            //afficherSolution(vect_bin);
             if( (*this).connexe(vect_bin) == true )
             {
                 //afficherSolution(vect_bin);

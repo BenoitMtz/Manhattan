@@ -17,6 +17,8 @@ public :
      bool connexe(std::vector<bool> vect_bin);
      friend void increment(std::vector<bool> &vec_bin);
      friend void afficherSolution(std::vector<bool> vect_bin);
+      void departcpt(std::vector<bool>&vec_bin);
+      void arrivecpt(std::vector<bool>&vec_bin);
      void trouverSolution();
     void afficherGraphique();
 

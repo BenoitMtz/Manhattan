@@ -10,12 +10,12 @@ int main()
 
     //g.afficher();
     g.trouverSolution();
-    g.afficherGraph();
+    //g.afficherGraph();
 
     g.afficherGraphique();
 
-    system("start graphique.svg");
-    system("start graphe.svg");
+    /*system("start graphique.svg");
+    system("start graphe.svg");*/
 
     return 0;
 }
