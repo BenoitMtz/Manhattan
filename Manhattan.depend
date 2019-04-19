@@ -13,15 +13,15 @@
 1555636646 source:c:\users\piriyathanousan\desktop\projet info\manhattan\arrete.cpp
 	"Arrete.h"
 
-1555670867 c:\users\piriyathanousan\desktop\projet info\manhattan\arrete.h
+1555674929 c:\users\piriyathanousan\desktop\projet info\manhattan\arrete.h
 	<iostream>
 
-1555671166 source:c:\users\piriyathanousan\desktop\projet info\manhattan\main.cpp
+1555673120 source:c:\users\piriyathanousan\desktop\projet info\manhattan\main.cpp
 	<iostream>
 	"MGraphe.h"
 	"svgfile.h"
 
-1555670867 c:\users\piriyathanousan\desktop\projet info\manhattan\mgraphe.h
+1555675088 c:\users\piriyathanousan\desktop\projet info\manhattan\mgraphe.h
 	<iostream>
 	<map>
 	<vector>
@@ -34,13 +34,10 @@
 	<map>
 	"Arrete.h"
 
-1555670868 c:\users\piriyathanousan\desktop\projet info\manhattan\svgfile.h
-	<iostream>
+1555672921 c:\users\piriyathanousan\desktop\projet info\manhattan\svgfile.h
 	<string>
 	<fstream>
 	<set>
-	<math.h>
-	<vector>
 
 1555658040 source:c:\users\piriyathanousan\desktop\projet info\manhattan\mgraphe.cpp
 	"MGraphe.h"
@@ -83,15 +80,16 @@
 1555671230 source:c:\users\benoit\desktop\info\cpp\manhattan\src\sommet.cpp
 	"../Sommet.h"
 
-1555670868 source:c:\users\piriyathanousan\desktop\projet info\manhattan\src\arrete.cpp
+1555674970 source:c:\users\piriyathanousan\desktop\projet info\manhattan\src\arrete.cpp
 	"../Arrete.h"
 
-1555671250 source:c:\users\piriyathanousan\desktop\projet info\manhattan\src\mgraphe.cpp
+1555674765 source:c:\users\piriyathanousan\desktop\projet info\manhattan\src\mgraphe.cpp
 	"../MGraphe.h"
 	<fstream>
 	<iomanip>
+	<algorithm>
 
-1555670868 source:c:\users\piriyathanousan\desktop\projet info\manhattan\src\svgfile.cpp
+1555672921 source:c:\users\piriyathanousan\desktop\projet info\manhattan\src\svgfile.cpp
 	<iostream>
 	<sstream>
 
