@@ -20,7 +20,9 @@ public :
       void departcpt(std::vector<bool>&vec_bin);
       void arrivecpt(std::vector<bool>&vec_bin);
      void trouverSolution();
-    void afficherGraphique();
+     void afficherGraphique();
+     void kruskal(std::string fichier, std::string fichier2);
+     std::map<std::string , Arrete*> getMapArret();
 
 private :
     std::map<std::string , Sommet*> m_sommet;

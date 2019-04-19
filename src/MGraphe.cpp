@@ -99,6 +99,11 @@ Mgraphe::Mgraphe(std::string fichier1,std::string fichier2)
     m_couleure = "red";
 }
 
+std::map<std::string , Arrete*> Mgraphe::getMapArret()
+{
+    return m_arrete;
+}
+
 void Mgraphe::afficher() const
 {
     std::cout << " Graphe : " << std::endl;
@@ -390,7 +395,38 @@ void Mgraphe::trouverSolution()
     }
 }
 
+<<<<<<< benoitmtz
 /*void Mgraphe::TrouverPareto()
 {
 
 }*/
+=======
+void Mgraphe::kruskal(std::string fichier, std::string fichier2)
+{
+    int test;
+    test = 1;
+
+    Mgraphe main{fichier, fichier2};
+
+    std::map<std::string , Arrete*> map_arrete;
+    std::vector<Arrete*> vect_arretes;
+
+   map_arrete = main.getMapArret();
+
+   for (const auto &a : map_arrete)
+   {
+       vect_arretes.push_back(a.second);
+   }
+
+   if (test == 1)
+   {
+
+
+   }
+   std::sort(vect_arretes.begin(), vect_arretes.end(), [](Arrete* s1, Arrete* s2)
+    {
+        return s1->getPoids(1) > s2->getPoids(1);
+    });
+
+}
+>>>>>>> debut kruskal
