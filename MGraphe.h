@@ -15,6 +15,9 @@ public :
      void afficherGraph() const;
      bool ordre(std::vector<bool> vect_binaire);
      bool connexe(std::vector<bool> vect_bin);
+     friend void increment(std::vector<bool> &vec_bin);
+     friend void afficherSolution(std::vector<bool> vect_bin);
+     void trouverSolution();
     void afficherGraphique();
 
 private :
