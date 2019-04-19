@@ -395,12 +395,15 @@ void Mgraphe::trouverSolution()
     }
 }
 
+<<<<<<< HEAD
 <<<<<<< benoitmtz
 /*void Mgraphe::TrouverPareto()
 {
 
 }*/
 =======
+=======
+>>>>>>> develop
 void Mgraphe::kruskal(std::string fichier, std::string fichier2)
 {
     int test;
@@ -429,4 +432,7 @@ void Mgraphe::kruskal(std::string fichier, std::string fichier2)
     });
 
 }
+<<<<<<< HEAD
 >>>>>>> debut kruskal
+=======
+>>>>>>> develop
