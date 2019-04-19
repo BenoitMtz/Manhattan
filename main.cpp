@@ -10,7 +10,7 @@ int main()
 
     //g.afficher();
     g.trouverSolution();
-    //g.afficherGraph();
+    g.afficherGraph(svgout);
 
     g.afficherGraphique();
 
