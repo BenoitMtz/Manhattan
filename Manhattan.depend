@@ -6,7 +6,7 @@
 	"MGraphe.h"
 	"svgfile.h"
 
-1555662022 source:c:\users\benoit\desktop\info\cpp\manhattan\src\svgfile.cpp
+1555670777 source:c:\users\benoit\desktop\info\cpp\manhattan\src\svgfile.cpp
 	<iostream>
 	<sstream>
 
@@ -72,13 +72,10 @@
 	<map>
 	"Arrete.h"
 
-1555662032 c:\users\benoit\desktop\info\cpp\manhattan\svgfile.h
-	<iostream>
+1555670777 c:\users\benoit\desktop\info\cpp\manhattan\svgfile.h
 	<string>
 	<fstream>
 	<set>
-	<math.h>
-	<vector>
 
 1555666804 source:c:\users\benoit\desktop\info\cpp\manhattan\src\arrete.cpp
 	"../Arrete.h"
@@ -144,7 +141,7 @@
 
 1555667719 
 
-1555669154 source:c:\users\benoit\desktop\info\cpp\manhattan\src\mgraphe.cpp
+1555670493 source:c:\users\benoit\desktop\info\cpp\manhattan\src\mgraphe.cpp
 	"../MGraphe.h"
 	<fstream>
 	<iomanip>

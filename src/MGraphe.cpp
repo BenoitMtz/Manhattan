@@ -1,6 +1,7 @@
 #include "../MGraphe.h"
 #include <fstream>
 #include <iomanip>
+#include <algorithm>
 
 Mgraphe::Mgraphe(std::string fichier1,std::string fichier2)
 {
@@ -179,7 +180,7 @@ void Mgraphe::afficherGraphique()
             }
             std::cout << "-------------->" << poids_1 << " ; " << poids_2 << std::endl;
         }
-        graphique.addDisk(poids_1, poids_2, 2.0, "red");
+        graphique.addDisk(50+10*poids_1, 500-10*poids_2, 2.0, "red");
         //m_tousLesPoids.push_back({poids_1, poids_2});
     }
 }
