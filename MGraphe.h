@@ -12,9 +12,10 @@ class Mgraphe
 public :
      Mgraphe(std::string fichier1,std::string fichier2);
      void afficher() const;
-     void afficherGraph(Svgfile& svgout) const;
+     void afficherGraph() const;
      bool ordre(std::vector<bool> vect_binaire);
      bool connexe(std::vector<bool> vect_bin);
+    void afficherGraphique();
 
 private :
     std::map<std::string , Sommet*> m_sommet;

@@ -9,6 +9,8 @@ public :
     Arrete();
     void ajouterpoid(double p1_init,double p2_init);
     void afficher() const;
+    double getPoids_1();
+    double getPoids_2();
 
 private :
     std::string m_id;

@@ -112,8 +112,9 @@ void Mgraphe::afficher() const
     std::cout << "Le cout total est (" << m_ptot1 << ";" << m_ptot2 << ")" << std::endl << std::endl;
 }
 
-void Mgraphe::afficherGraph(Svgfile& svgout) const
+void Mgraphe::afficherGraph() const
 {
+    Svgfile svgout("graphe.svg");
 
     std::cout<<m_arrete.size();
     std::vector<bool> vec_bin = {1,1,1,1,1,1,1,0,0,1,0,0};
@@ -154,6 +155,32 @@ void Mgraphe::afficherGraph(Svgfile& svgout) const
             svgout.addLine(xd,yd,xa,ya,"black");
         }
     }
+}
+
+void Mgraphe::afficherGraphique()
+{
+    unsigned int nbAreteParGraphe = m_chemin.find("1")->second.size();
+    double poids_1, poids_2;
+    Arrete *arete_actuel;
+    Svgfile graphique("graphique.svg");
+
+    for(auto& graphe : m_chemin)
+    {
+        poids_1 = 0;
+        poids_2 = 0;
+        for(size_t j = nbAreteParGraphe-1 ; j >= 0 ; j--)
+        {
+            if(graphe.second[j] == true)
+            {
+                arete_actuel = m_arrete.find(std::to_string(j))->second;
+                poids_1 += arete_actuel->getPoids_1();
+                poids_2 += arete_actuel->getPoids_2();
+            }
+        }
+        std::cout << "===========================>" << poids_1 << " ; " << poids_2 << std::endl;
+        graphique.addDisk(poids_1, poids_2, 2.0, "red");
+    }
+    std::cout << "===========================>" << poids_1 << " ; " << poids_2 << std::endl;
 }
 
 

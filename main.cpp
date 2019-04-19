@@ -11,7 +11,7 @@ int main()
 
     g.afficher();
 
-    g.afficherGraph(svgout);
+    g.afficherGraph();
 
     std::cout << "Projet Manhattan" << std::endl;
     return 0;
