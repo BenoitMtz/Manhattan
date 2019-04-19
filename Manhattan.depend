@@ -1,8 +1,48 @@
 # depslib dependency file v1.0
+<<<<<<< HEAD
 1555660952 source:c:\users\benoit\desktop\info\cpp\manhattan\main.cpp
 	<iostream>
 
 1555661006 source:c:\users\benoit\desktop\info\cpp\manhattan\src\svgfile.cpp
+=======
+1555636646 source:c:\users\piriyathanousan\desktop\projet info\manhattan\arrete.cpp
+	"Arrete.h"
+
+1555636646 c:\users\piriyathanousan\desktop\projet info\manhattan\arrete.h
+	<iostream>
+
+1555655061 source:c:\users\piriyathanousan\desktop\projet info\manhattan\main.cpp
+	<iostream>
+	"MGraphe.h"
+
+1555657926 c:\users\piriyathanousan\desktop\projet info\manhattan\mgraphe.h
+	<iostream>
+	<map>
+	<vector>
+	"Arrete.h"
+	"Sommet.h"
+	"svgfile.h"
+
+1555639094 c:\users\piriyathanousan\desktop\projet info\manhattan\sommet.h
+	<iostream>
+	<map>
+	"Arrete.h"
+
+1555638098 c:\users\piriyathanousan\desktop\projet info\manhattan\svgfile.h
+	<string>
+	<fstream>
+	<set>
+
+1555658040 source:c:\users\piriyathanousan\desktop\projet info\manhattan\mgraphe.cpp
+	"MGraphe.h"
+	<fstream>
+	<iomanip>
+
+1555639144 source:c:\users\piriyathanousan\desktop\projet info\manhattan\sommet.cpp
+	"Sommet.h"
+
+1543797190 source:c:\users\piriyathanousan\desktop\projet info\manhattan\svgfile.cpp
+>>>>>>> develop
 	<iostream>
 	<sstream>
 
