@@ -207,3 +207,62 @@ bool Mgraphe::connexe(std::vector<bool> vect_bin)
         return false;
     }
 }
+
+void afficherSolution(std::vector<bool> vect_bin)
+ {
+     for(size_t i = 0  ; i < vect_bin.size() ; i++)
+     {
+         std::cout<<vect_bin[i]<<" ";
+     }
+     std::cout<<" "<<std::endl;
+ }
+
+void increment(std::vector<bool> &vec_bin)
+{
+    int i = vec_bin.size() -1 ;
+
+    do
+    {
+
+     if(vec_bin[i] == 0)
+     {
+        vec_bin[i] = 1;
+        i = 1000;
+
+     }
+
+     else if( vec_bin[i] == 1 )
+     {
+        vec_bin[i] = 0;
+        i--;
+        if(i < 0)
+        {
+           i = 1000;
+        }
+     }
+
+
+    }
+     while(i < 1000);
+
+
+}
+
+ void Mgraphe::trouverSolution()
+ {
+     std::vector<bool> vect_bin;
+     vect_bin.resize(m_arrete.size() );
+     std::string name;
+
+     for(long i = 0 ; i < pow( 2 , m_arrete.size() ) ; i++ )
+     {
+         increment(vect_bin) ;
+         if( (*this).ordre(vect_bin) == true )
+         {
+                 afficherSolution(vect_bin);
+                 name = "bf" + std::to_string(i);
+                 m_chemin.insert({name,vect_bin});
+         }
+         //std::cout<<"chemin enregistre"<<std::endl;
+     }
+ }
