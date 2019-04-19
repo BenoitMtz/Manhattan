@@ -4,8 +4,8 @@
 
 int main()
 {
-    std::string fichier = "files/triville.txt";
-    std::string fichier1 = "files/triville_weights_0.txt";
+    std::string fichier = "files/broadway.txt";
+    std::string fichier1 = "files/broadway_weights_0.txt";
     Mgraphe g{fichier, fichier1};
 
     //g.afficher();
