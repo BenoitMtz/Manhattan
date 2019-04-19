@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1555660952 source:c:\users\benoit\desktop\info\cpp\manhattan\main.cpp
+	<iostream>
+
+1555661006 source:c:\users\benoit\desktop\info\cpp\manhattan\src\svgfile.cpp
+	<iostream>
+	<sstream>
+

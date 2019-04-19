@@ -1,5 +1,4 @@
-﻿#include "svgfile.h"
-#include "interfaceSB.h"
+﻿#include "../svgfile.h"
 #include <iostream>
 #include <sstream>
 
@@ -82,6 +81,7 @@ std::string attrib(std::string name,std::string champs, std::string nom ,std::st
     oss << name << "=\""<<champs <<champs2<<nom<<"\" " ;
     return oss.str();
 }
+
 std::string attrib(std::string name, std::string nom,std::string champs )
 {
     std::ostringstream oss;
@@ -93,36 +93,6 @@ std::string attrib(std::string name,std::string champs, double x ,double y, std:
     std::ostringstream oss;
     oss << name << "=\""<<champs<<-x<<","<<-y<<champs2<<"\"" ;
     return oss.str();
-}
-
-void Svgfile::addAnimatedDisk(double x, double y, double r, std::string color,std::string nom, bool tourne)
-{
-    m_ostrm << "<circle "
-            <<attrib("id",nom)
-            << attrib("cx", x)
-            << attrib("cy", y)
-            << attrib("r",  r)
-            << attrib("fill", fillBallColor(color) )
-            <<attrib("transform","scale(-1,1)translate(",x,y,")")
-            << "/>\n"
-            <<"<path "
-            <<attrib("id",nom,"motionPath")
-            <<attrib("fill","none")
-            <<attrib("stroke","black")
-            <<attrib("d",x,y,tourne)
-            << "/>\n"
-            <<"<animateMotion "
-            <<attrib("xlink:href",nom,"#")
-            <<attrib("dur",(2*3.14*(x-1000))/pow(GM/(x-1000), 0.5)*33)
-            <<attrib("begin","0s")
-            <<attrib("fill","freeze")
-            <<attrib("repeatCount","indefinite")
-            <<attrib("rotate","auto")
-            << ">\n"
-            <<attrib("<mpath xlink:href","#",nom,"motionPath")
-            << "/>\n"
-            <<"</animateMotion >\n";
-            addText(x,y,nom);
 }
 
 void Svgfile::addLine(double x1, double y1, double x2, double y2, std::string color)
