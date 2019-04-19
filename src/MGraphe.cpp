@@ -197,7 +197,12 @@ void Mgraphe::afficherGraphique()
                 poids_2 += arete_actuel->getPoids_2();
             }
         }
+<<<<<<< HEAD
         graphique.addDisk(50+10*poids_1, 500-10*poids_2, 2.0, "red");
+=======
+        graphique.addDisk(50+400.0*poids_1/m_ptot1, 500-400.0*poids_2/m_ptot2, 2.0, "red");
+        //m_tousLesPoids.push_back({poids_1, poids_2});
+>>>>>>> benoit
     }
 }
 
