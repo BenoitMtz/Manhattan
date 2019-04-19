@@ -114,9 +114,10 @@ void Mgraphe::afficher() const
 
 void Mgraphe::afficherGraph(Svgfile& svgout) const
 {
+    std::vector<bool> vec_bin;
+    vec_bin.resize(m_arrete.size() );
+    std::string name;
 
-    std::cout<<m_arrete.size();
-    std::vector<bool> vec_bin = {1,1,1,1,1,1,1,0,0,1,0,0};
 
     bool select;
     int s = 0;
@@ -140,13 +141,13 @@ void Mgraphe::afficherGraph(Svgfile& svgout) const
                     s++;
                     if(s == 1)
                     {
-                    xd = it.second->getX();
-                    yd = it.second->getY();
+                        xd = it.second->getX();
+                        yd = it.second->getY();
                     }
                     if(s == 2)
                     {
-                    xa = it.second->getX();
-                    ya = it.second->getY();
+                        xa = it.second->getX();
+                        ya = it.second->getY();
                     }
                 }
             }
@@ -167,13 +168,17 @@ bool Mgraphe::ordre(std::vector<bool> vect_binaire)
         if (binary == 1)
         {
             compteur++;
-            if (compteur >= nb_sommet) return false;
+            if (compteur >= nb_sommet)
+                return false;
         }
     }
 
-    if(compteur < nb_sommet - 1){
+    if(compteur < nb_sommet - 1)
+    {
         return false;
-    }else{
+    }
+    else
+    {
         return true;
     }
 }
@@ -181,9 +186,13 @@ bool Mgraphe::ordre(std::vector<bool> vect_binaire)
 bool Mgraphe::connexe(std::vector<bool> vect_bin)
 {
     bool select;
-    std::vector<std::string> vect_somm;
+    //std::vector<std::string> vect_somm;
+    int s = 0;
+    std::string s1, s2;
+    std::map<std::string, int> vect_somm;
 
-   for(size_t i = 0 ; i < m_arrete.size() ; i++)
+
+    for(size_t i = 0 ; i < m_arrete.size() ; i++)
     {
         if(vect_bin[vect_bin.size() - 1 - i] == 1)
         {
@@ -194,28 +203,40 @@ bool Mgraphe::connexe(std::vector<bool> vect_bin)
                 select = it.second->trouverArrete(A1);
                 if(select == true )
                 {
-                    vect_somm.push_back(it.second->getID());
-                    vect_somm.push_back(it.second->getID());
+                    s++;
+                    if(s == 1)
+                    {
+                       // vect_somm.push_back(it.second->getID());
+                       vect_somm.insert({it.second->getID(), 0});
+                    }
+                    if(s == 2)
+                    {
+                        //vect_somm.push_back(it.second->getID());
+                        vect_somm.insert({it.second->getID(), 1});
+                    }
                 }
             }
+            s=0;
         }
     }
     if (vect_somm.size() == m_sommet.size())
     {
         return true;
-    } else {
+    }
+    else
+    {
         return false;
     }
 }
 
 void afficherSolution(std::vector<bool> vect_bin)
- {
-     for(size_t i = 0  ; i < vect_bin.size() ; i++)
-     {
-         std::cout<<vect_bin[i]<<" ";
-     }
-     std::cout<<" "<<std::endl;
- }
+{
+    for(size_t i = 0  ; i < vect_bin.size() ; i++)
+    {
+        std::cout<<vect_bin[i]<<" ";
+    }
+    std::cout<<" "<<std::endl;
+}
 
 void increment(std::vector<bool> &vec_bin)
 {
@@ -224,45 +245,49 @@ void increment(std::vector<bool> &vec_bin)
     do
     {
 
-     if(vec_bin[i] == 0)
-     {
-        vec_bin[i] = 1;
-        i = 1000;
-
-     }
-
-     else if( vec_bin[i] == 1 )
-     {
-        vec_bin[i] = 0;
-        i--;
-        if(i < 0)
+        if(vec_bin[i] == 0)
         {
-           i = 1000;
+            vec_bin[i] = 1;
+            i = 1000;
+
         }
-     }
+
+        else if( vec_bin[i] == 1 )
+        {
+            vec_bin[i] = 0;
+            i--;
+            if(i < 0)
+            {
+                i = 1000;
+            }
+        }
 
 
     }
-     while(i < 1000);
+    while(i < 1000);
 
 
 }
 
- void Mgraphe::trouverSolution()
- {
-     std::vector<bool> vect_bin;
-     vect_bin.resize(m_arrete.size() );
-     std::string name;
+void Mgraphe::trouverSolution()
+{
+    std::vector<bool> vect_bin;
+    vect_bin.resize(m_arrete.size() );
+    std::string name;
 
-     for(long i = 0 ; i < pow( 2 , m_arrete.size() ) ; i++ )
-     {
-         increment(vect_bin) ;
-         if( (*this).ordre(vect_bin) == true )
-         {
-                 afficherSolution(vect_bin);
-                 name = "bf" + std::to_string(i);
-                 m_chemin.insert({name,vect_bin});
-         }
-         //std::cout<<"chemin enregistre"<<std::endl;
-     }
- }
+    for(long i = 0 ; i < pow( 2, m_arrete.size() ) ; i++ )
+    {
+        increment(vect_bin) ;
+        if( (*this).ordre(vect_bin) == true )
+        {
+
+            if( (*this).connexe(vect_bin) == true )
+            {
+                //afficherSolution(vect_bin);
+                name = "bf" + std::to_string(i);
+                m_chemin.insert({name,vect_bin});
+            }
+
+        }
+    }
+}
