@@ -113,11 +113,28 @@ void Mgraphe::afficher() const
     std::cout << "Le cout total est (" << m_ptot1 << ";" << m_ptot2 << ")" << std::endl << std::endl;
 }
 
+void afficherSolution(std::vector<bool> vect_bin)
+{
+    for(size_t i = 0  ; i < vect_bin.size() ; i++)
+    {
+        std::cout<<vect_bin[i]<<" ";
+    }
+    std::cout<<" "<<std::endl;
+}
+
 void Mgraphe::afficherGraph() const
 {
-    std::vector<bool> vec_bin;
-    vec_bin.resize(m_arrete.size() );
-    std::string name;
+    std::string indice;
+    for(auto const&it : m_chemin)
+    {
+        std::cout<<it.first<<std::endl;
+    }
+    std::cout<<"entrer l'indice du graphe a afficher"<<std::endl;
+    std::cin>>indice;
+
+    afficherSolution(m_chemin.find(indice)->second);
+
+    std::vector<bool> vec_bin = m_chemin.find(indice)->second;
 
     Svgfile svgout("graphe.svg");
 
@@ -173,18 +190,14 @@ void Mgraphe::afficherGraphique()
         poids_2 = 0;
         for(size_t j = 0 ; j < m_arrete.size() ; j++)
         {
-           // std::cout << "========================>" << j << " ; " << graphe.second[j] << std::endl;
             if(graphe.second[m_arrete.size() - 1 - j] == true)
             {
                 arete_actuel = m_arrete.find(std::to_string(j))->second;
-                //arete_actuel->afficher();
                 poids_1 += arete_actuel->getPoids_1();
                 poids_2 += arete_actuel->getPoids_2();
             }
-            //std::cout << "-------------->" << poids_1 << " ; " << poids_2 << std::endl;
         }
         graphique.addDisk(50+10*poids_1, 500-10*poids_2, 2.0, "red");
-        //m_tousLesPoids.push_back({poids_1, poids_2});
     }
 }
 
@@ -260,14 +273,6 @@ bool Mgraphe::connexe(std::vector<bool> vect_bin)
     }
 }
 
-void afficherSolution(std::vector<bool> vect_bin)
-{
-    for(size_t i = 0  ; i < vect_bin.size() ; i++)
-    {
-        std::cout<<vect_bin[i]<<" ";
-    }
-    std::cout<<" "<<std::endl;
-}
 
 void increment(std::vector<bool> &vec_bin)
 {
@@ -314,7 +319,7 @@ void Mgraphe::trouverSolution()
 
             if( (*this).connexe(vect_bin) == true )
             {
-                afficherSolution(vect_bin);
+                //afficherSolution(vect_bin);
                 name = "bf" + std::to_string(i);
                 m_chemin.insert({name,vect_bin});
             }
@@ -322,3 +327,8 @@ void Mgraphe::trouverSolution()
         }
     }
 }
+
+/*void Mgraphe::TrouverPareto()
+{
+
+}*/

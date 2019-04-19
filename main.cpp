@@ -15,7 +15,7 @@ int main()
     g.afficherGraphique();
 
     system("start graphique.svg");
-    //system("start graphe.svg");
+    system("start graphe.svg");
 
     return 0;
 }

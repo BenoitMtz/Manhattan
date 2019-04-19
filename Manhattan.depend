@@ -100,12 +100,12 @@
 
 1555664399 D
 
-1555668140 source:c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\main.cpp
+1555674860 source:c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\main.cpp
 	<iostream>
 	"MGraphe.h"
 	"svgfile.h"
 
-1555667949 c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\mgraphe.h
+1555674531 c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\mgraphe.h
 	<iostream>
 	<map>
 	<vector>
@@ -113,7 +113,7 @@
 	"Sommet.h"
 	"svgfile.h"
 
-1555667716 c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\arrete.h
+1555672983 c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\arrete.h
 	<iostream>
 
 1555667718 c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\sommet.h
@@ -121,21 +121,18 @@
 	<map>
 	"Arrete.h"
 
-1555667719 c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\svgfile.h
-	<iostream>
+1555672985 c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\svgfile.h
 	<string>
 	<fstream>
 	<set>
-	<math.h>
-	<vector>
 
-1555667718 source:c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\src\arrete.cpp
+1555672984 source:c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\src\arrete.cpp
 	"../Arrete.h"
 
 1555667719 source:c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\src\sommet.cpp
 	"../Sommet.h"
 
-1555667719 source:c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\src\svgfile.cpp
+1555672984 source:c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\src\svgfile.cpp
 	<iostream>
 	<sstream>
 
@@ -148,4 +145,10 @@
 	<algorithm>
 
 1555666883 affichage_graphique
+
+1555675058 source:c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\src\mgraphe.cpp
+	"../MGraphe.h"
+	<fstream>
+	<iomanip>
+	<algorithm>
 
