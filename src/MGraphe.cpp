@@ -180,21 +180,30 @@ bool Mgraphe::ordre(std::vector<bool> vect_binaire)
 
 bool Mgraphe::connexe(std::vector<bool> vect_bin)
 {
-    int nb_sommet = m_sommet.size();
-    int compteur = 0;
+    bool select;
+    std::vector<std::string> vect_somm;
 
-    for(const auto& binary : vect_bin)
+   for(size_t i = 0 ; i < m_arrete.size() ; i++)
     {
-        if (binary == 1)
+        if(vect_bin[vect_bin.size() - 1 - i] == 1)
         {
-            compteur++;
-            if (compteur >= nb_sommet) return false;
+            Arrete*A1 = m_arrete.find( std::to_string(i) ) -> second ;
+
+            for(const auto&it : m_sommet)
+            {
+                select = it.second->trouverArrete(A1);
+                if(select == true )
+                {
+                    vect_somm.push_back(it.second->getID());
+                    vect_somm.push_back(it.second->getID());
+                }
+            }
         }
     }
-
-    if(compteur < nb_sommet - 1){
-        return false;
-    }else{
+    if (vect_somm.size() == m_sommet.size())
+    {
         return true;
+    } else {
+        return false;
     }
 }

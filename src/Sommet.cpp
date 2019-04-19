@@ -44,6 +44,11 @@ double Sommet::getY()
     return m_y;
 }
 
+std::string Sommet::getID()
+{
+    return m_id;
+}
+
 bool Sommet::trouverArrete(Arrete*A1)
 {
     for(const auto&it : m_voisin)

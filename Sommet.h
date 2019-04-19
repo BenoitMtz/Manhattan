@@ -14,6 +14,7 @@ public :
     void afficherData() const;
     double getX();
     double getY();
+    std::string getID();
     bool trouverArrete(Arrete*A1);
 
 private :
