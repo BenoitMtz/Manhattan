@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1000" height="800">
 
-<circle cx="225" cy="85" r="5" fill="black" />
-<circle cx="175" cy="170" r="5" fill="black" />
-<circle cx="275" cy="170" r="5" fill="black" />
-<circle cx="125" cy="255" r="5" fill="black" />
-<circle cx="225" cy="255" r="5" fill="black" />
-<circle cx="325" cy="255" r="5" fill="black" />
-<circle cx="75" cy="340" r="5" fill="black" />
-<circle cx="175" cy="340" r="5" fill="black" />
-<circle cx="275" cy="340" r="5" fill="black" />
-<circle cx="375" cy="340" r="5" fill="black" />
+<circle cx="100" cy="100" r="5" fill="black" />
+<circle cx="200" cy="100" r="5" fill="black" />
+<circle cx="100" cy="200" r="5" fill="black" />
+<circle cx="200" cy="200" r="5" fill="black" />
 
 
 </svg>
