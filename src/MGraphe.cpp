@@ -1,6 +1,7 @@
 #include "../MGraphe.h"
 #include <fstream>
 #include <iomanip>
+#include <algorithm>
 
 Mgraphe::Mgraphe(std::string fichier1,std::string fichier2)
 {
@@ -114,13 +115,12 @@ void Mgraphe::afficher() const
 
 void Mgraphe::afficherGraph() const
 {
-<<<<<<< HEAD
     std::vector<bool> vec_bin;
     vec_bin.resize(m_arrete.size() );
     std::string name;
-=======
+
     Svgfile svgout("graphe.svg");
->>>>>>> develop
+
 
 
     bool select;
@@ -173,17 +173,17 @@ void Mgraphe::afficherGraphique()
         poids_2 = 0;
         for(size_t j = 0 ; j < m_arrete.size() ; j++)
         {
-            std::cout << "========================>" << j << " ; " << graphe.second[j] << std::endl;
+           // std::cout << "========================>" << j << " ; " << graphe.second[j] << std::endl;
             if(graphe.second[m_arrete.size() - 1 - j] == true)
             {
                 arete_actuel = m_arrete.find(std::to_string(j))->second;
-                arete_actuel->afficher();
+                //arete_actuel->afficher();
                 poids_1 += arete_actuel->getPoids_1();
                 poids_2 += arete_actuel->getPoids_2();
             }
-            std::cout << "-------------->" << poids_1 << " ; " << poids_2 << std::endl;
+            //std::cout << "-------------->" << poids_1 << " ; " << poids_2 << std::endl;
         }
-        graphique.addDisk(poids_1, poids_2, 2.0, "red");
+        graphique.addDisk(50+10*poids_1, 500-10*poids_2, 2.0, "red");
         //m_tousLesPoids.push_back({poids_1, poids_2});
     }
 }
@@ -314,7 +314,7 @@ void Mgraphe::trouverSolution()
 
             if( (*this).connexe(vect_bin) == true )
             {
-                //afficherSolution(vect_bin);
+                afficherSolution(vect_bin);
                 name = "bf" + std::to_string(i);
                 m_chemin.insert({name,vect_bin});
             }
