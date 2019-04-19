@@ -32,7 +32,15 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Arrete.cpp" />
+		<Unit filename="Arrete.h" />
+		<Unit filename="MGraphe.cpp" />
+		<Unit filename="MGraphe.h" />
+		<Unit filename="Sommet.cpp" />
+		<Unit filename="Sommet.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="svgfile.cpp" />
+		<Unit filename="svgfile.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
