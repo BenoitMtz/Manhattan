@@ -34,3 +34,15 @@ double Arrete::getPoids_2()
 {
     return m_p2;
 }
+
+double Arrete::getPoids(int test)
+{
+    if (test == 1)
+    {
+        return m_p1;
+    }else if ( test == 2 ) {
+        return m_p2;
+    }
+
+    return 1;
+}
