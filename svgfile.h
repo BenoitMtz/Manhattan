@@ -29,7 +29,7 @@ class Svgfile
         void addAnimatedDisk(double x ,double y ,double r ,std::string color =defcol,std::string nom="null",bool tourne=1);
         void addText(double x, double y, std::string text, std::string color=defcol);
         void addText(double x, double y, double val, std::string color=defcol);
-
+        void addDisk(double x, double y, double r, std::string color);
         void addGrid(double span=100.0, bool numbering=true, std::string color="lightgrey");
 };
 

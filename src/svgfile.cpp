@@ -129,6 +129,25 @@ void Svgfile::addText(double x, double y, double val, std::string color)
     addText(x, y, oss.str(), color);
 }
 
+void Svgfile::addDisk(double x, double y, double r, std::string color)
+{
+     /*m_ostrm  <<"<defs>\n"
+    <<"<radialGradient id="<<"grad1" <<"cx="<<"50%" <<"cy="<<"50%" <<"r="<<"50%"<<"fx="<<"50%" <<"fy="<<"50%"<<">\n"
+    <<"<stop offset="<<"0%" <<"style="<<"stop-color:rgb(255,255,255);stop-opacity:0" <<"/>\n"
+    <<"<stop offset="<<"100%" <<"style="<<"stop-color:rgb(0,0,255);stop-opacity:1" <<"/>\n"
+    <<"</radialGradient>\n"
+    <<"</defs>\n"
+    <<"<ellipse cx="<<"200" <<"cy="<<"70" <<"rx="<<"85" <<"ry="<<"55" <<"fill="<<"url(#grad1)"<<" />\n";*/
+
+    m_ostrm << "<circle "
+            << attrib("cx", x)
+            << attrib("cy", y)
+            << attrib("r",  r)
+            << attrib("fill", color )
+            << "/>\n";
+
+}
+
 void Svgfile::addGrid(double span, bool numbering, std::string color)
 {
     double y=0;

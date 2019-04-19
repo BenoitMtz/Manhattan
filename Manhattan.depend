@@ -1,10 +1,15 @@
 # depslib dependency file v1.0
-<<<<<<< HEAD
-1555660952 source:c:\users\benoit\desktop\info\cpp\manhattan\main.cpp
-	<iostream>
+2009741283 Tÿÿÿ‹V(ƒ¥Hÿÿÿ
 
-1555661006 source:c:\users\benoit\desktop\info\cpp\manhattan\src\svgfile.cpp
-=======
+1555661818 source:c:\users\benoit\desktop\info\cpp\manhattan\main.cpp
+	<iostream>
+	"MGraphe.h"
+	"svgfile.h"
+
+1555662022 source:c:\users\benoit\desktop\info\cpp\manhattan\src\svgfile.cpp
+	<iostream>
+	<sstream>
+
 1555636646 source:c:\users\piriyathanousan\desktop\projet info\manhattan\arrete.cpp
 	"Arrete.h"
 
@@ -42,7 +47,38 @@
 	"Sommet.h"
 
 1543797190 source:c:\users\piriyathanousan\desktop\projet info\manhattan\svgfile.cpp
->>>>>>> develop
+
+1543797190 elop
 	<iostream>
 	<sstream>
+
+1555661211 c:\users\benoit\desktop\info\cpp\manhattan\mgraphe.h
+	<iostream>
+	<map>
+	<vector>
+	"Arrete.h"
+	"Sommet.h"
+	"svgfile.h"
+
+1555661211 c:\users\benoit\desktop\info\cpp\manhattan\arrete.h
+	<iostream>
+
+1555661211 c:\users\benoit\desktop\info\cpp\manhattan\sommet.h
+	<iostream>
+	<map>
+	"Arrete.h"
+
+1555662032 c:\users\benoit\desktop\info\cpp\manhattan\svgfile.h
+	<iostream>
+	<string>
+	<fstream>
+	<set>
+	<math.h>
+	<vector>
+
+1555661870 source:c:\users\benoit\desktop\info\cpp\manhattan\src\arrete.cpp
+	"../Arrete.h"
+
+1555661875 source:c:\users\benoit\desktop\info\cpp\manhattan\src\sommet.cpp
+	"../Sommet.h"
 

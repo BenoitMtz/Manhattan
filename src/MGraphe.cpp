@@ -1,4 +1,4 @@
-#include "MGraphe.h"
+#include "../MGraphe.h"
 #include <fstream>
 #include <iomanip>
 
@@ -138,7 +138,6 @@ void Mgraphe::afficherGraph(Svgfile& svgout) const
                 if(select == true )
                 {
                     s++;
-                    Sommet*S1 = it.second ;
                     if(s == 1)
                     {
                     xd = it.second->getX();

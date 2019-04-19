@@ -1,4 +1,4 @@
-#include "Arrete.h"
+#include "../Arrete.h"
 
 Arrete::Arrete(std::string id_init)
 :m_id{id_init}

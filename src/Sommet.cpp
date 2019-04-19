@@ -1,4 +1,4 @@
-#include "Sommet.h"
+#include "../Sommet.h"
 
 Sommet::Sommet(double x_init,double y_init,std::string id_init)
 :m_id{id_init}, m_x{x_init} , m_y{y_init}
