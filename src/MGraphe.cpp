@@ -159,7 +159,6 @@ void Mgraphe::afficherGraph() const
 
 void Mgraphe::afficherGraphique()
 {
-    unsigned int nbAreteParGraphe = m_chemin.find("1")->second.size();
     double poids_1, poids_2;
     Arrete *arete_actuel;
     Svgfile graphique("graphique.svg");
@@ -168,20 +167,21 @@ void Mgraphe::afficherGraphique()
     {
         poids_1 = 0;
         poids_2 = 0;
-        for(size_t j = nbAreteParGraphe-1 ; j >= 0 ; j--)
+        for(size_t j = 0 ; j < m_arrete.size() ; j++)
         {
-            if(graphe.second[j] == true)
+            std::cout << "========================>" << j << " ; " << graphe.second[j] << std::endl;
+            if(graphe.second[m_arrete.size() - 1 - j] == true)
             {
                 arete_actuel = m_arrete.find(std::to_string(j))->second;
+                arete_actuel->afficher();
                 poids_1 += arete_actuel->getPoids_1();
                 poids_2 += arete_actuel->getPoids_2();
             }
+            std::cout << "-------------->" << poids_1 << " ; " << poids_2 << std::endl;
         }
-        std::cout << "===========================>" << poids_1 << " ; " << poids_2 << std::endl;
         graphique.addDisk(poids_1, poids_2, 2.0, "red");
-        m_tousLesPoids.push_back({poids_1, poids_2});
+        //m_tousLesPoids.push_back({poids_1, poids_2});
     }
-    std::cout << "===========================>" << poids_1 << " ; " << poids_2 << std::endl;
 }
 
 
