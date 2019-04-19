@@ -1,7 +1,7 @@
 # depslib dependency file v1.0
 2009741283 Tÿÿÿ‹V(ƒ¥Hÿÿÿ
 
-1555661818 source:c:\users\benoit\desktop\info\cpp\manhattan\main.cpp
+1555667010 source:c:\users\benoit\desktop\info\cpp\manhattan\main.cpp
 	<iostream>
 	"MGraphe.h"
 	"svgfile.h"
@@ -56,7 +56,7 @@
 	<iostream>
 	<sstream>
 
-1555661211 c:\users\benoit\desktop\info\cpp\manhattan\mgraphe.h
+1555668476 c:\users\benoit\desktop\info\cpp\manhattan\mgraphe.h
 	<iostream>
 	<map>
 	<vector>
@@ -100,4 +100,9 @@
 
 1555664399 source:c:\users\piriyathanousan\desktop\projet info\manhattan\src\sommet.cpp
 	"../Sommet.h"
+
+1555666883 source:c:\users\benoit\desktop\info\cpp\manhattan\src\mgraphe.cpp
+	"../MGraphe.h"
+	<fstream>
+	<iomanip>
 

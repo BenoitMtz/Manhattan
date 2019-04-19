@@ -23,6 +23,7 @@ private :
     double m_ptot1,m_ptot2;
     std::string m_couleure;
     std::map<std::string , std::vector<bool> > m_chemin;
+    std::vector<std::pair<double, double>> m_tousLesPoids;
 };
 
 #endif // MGRAPHE_H_INCLUDED
