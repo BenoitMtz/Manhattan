@@ -144,9 +144,47 @@
 
 1555666883 affichage_graphique
 
+<<<<<<< benoitmtz
 1555683272 source:c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\src\mgraphe.cpp
+=======
+1555718951 source:c:\git\manhattan\src\arrete.cpp
+	"../Arrete.h"
+
+1555718951 c:\git\manhattan\arrete.h
+	<iostream>
+
+1555719246 source:c:\git\manhattan\src\mgraphe.cpp
+>>>>>>> J'ai peur
 	"../MGraphe.h"
 	<fstream>
 	<iomanip>
 	<algorithm>
 
+<<<<<<< benoitmtz
+=======
+1555719246 c:\git\manhattan\mgraphe.h
+	<iostream>
+	<map>
+	<vector>
+	"Arrete.h"
+	"Sommet.h"
+	"svgfile.h"
+
+1555718912 c:\git\manhattan\sommet.h
+	<iostream>
+	<map>
+	"Arrete.h"
+
+1555718912 c:\git\manhattan\svgfile.h
+	<string>
+	<fstream>
+	<set>
+
+1555718912 source:c:\git\manhattan\src\sommet.cpp
+	"../Sommet.h"
+
+1555719246 source:c:\git\manhattan\src\svgfile.cpp
+	<iostream>
+	<sstream>
+
+>>>>>>> J'ai peur
