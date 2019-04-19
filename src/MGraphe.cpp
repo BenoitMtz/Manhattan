@@ -99,7 +99,7 @@ Mgraphe::Mgraphe(std::string fichier1,std::string fichier2)
     m_couleure = "red";
 }
 
-std::map<std::string , Arrete*> Mgraphe::getMapArret()
+std::map<std::string, Arrete*> Mgraphe::getMapArret()
 {
     return m_arrete;
 }
@@ -178,7 +178,7 @@ void Mgraphe::afficherGraphique()
         poids_2 = 0;
         for(size_t j = 0 ; j < m_arrete.size() ; j++)
         {
-           // std::cout << "========================>" << j << " ; " << graphe.second[j] << std::endl;
+            // std::cout << "========================>" << j << " ; " << graphe.second[j] << std::endl;
             if(graphe.second[m_arrete.size() - 1 - j] == true)
             {
                 arete_actuel = m_arrete.find(std::to_string(j))->second;
@@ -242,8 +242,8 @@ bool Mgraphe::connexe(std::vector<bool> vect_bin)
                     s++;
                     if(s == 1)
                     {
-                       // vect_somm.push_back(it.second->getID());
-                       vect_somm.insert({it.second->getID(), 0});
+                        // vect_somm.push_back(it.second->getID());
+                        vect_somm.insert({it.second->getID(), 0});
                     }
                     if(s == 2)
                     {
@@ -335,24 +335,30 @@ void Mgraphe::kruskal(std::string fichier, std::string fichier2)
 
     Mgraphe main{fichier, fichier2};
 
-    std::map<std::string , Arrete*> map_arrete;
+    std::map<std::string, Arrete*> map_arrete;
     std::vector<Arrete*> vect_arretes;
 
-   map_arrete = main.getMapArret();
+    map_arrete = main.getMapArret();
 
-   for (const auto &a : map_arrete)
-   {
-       vect_arretes.push_back(a.second);
-   }
-
-   if (test == 1)
-   {
-
-
-   }
-   std::sort(vect_arretes.begin(), vect_arretes.end(), [](Arrete* s1, Arrete* s2)
+    for (const auto &a : map_arrete)
     {
-        return s1->getPoids(1) > s2->getPoids(1);
-    });
+        vect_arretes.push_back(a.second);
+    }
+
+    if (test == 1)
+    {
+        std::sort(vect_arretes.begin(), vect_arretes.end(), [](Arrete* s1, Arrete* s2)
+        {
+            return s1->getPoids(1) > s2->getPoids(1);
+        });
+    }
+    else if(test == 2)
+    {
+        std::sort(vect_arretes.begin(), vect_arretes.end(), [](Arrete* s1, Arrete* s2)
+        {
+            return s1->getPoids(2) > s2->getPoids(2);
+        });
+    }
+
 
 }
