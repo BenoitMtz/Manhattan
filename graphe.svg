@@ -3,8 +3,20 @@
 
 <circle cx="100" cy="100" r="5" fill="black" />
 <circle cx="200" cy="100" r="5" fill="black" />
+<circle cx="300" cy="300" r="5" fill="black" />
+<circle cx="400" cy="300" r="5" fill="black" />
+<circle cx="100" cy="400" r="5" fill="black" />
+<circle cx="200" cy="400" r="5" fill="black" />
+<circle cx="300" cy="400" r="5" fill="black" />
+<circle cx="400" cy="400" r="5" fill="black" />
+<circle cx="300" cy="100" r="5" fill="black" />
+<circle cx="400" cy="100" r="5" fill="black" />
 <circle cx="100" cy="200" r="5" fill="black" />
 <circle cx="200" cy="200" r="5" fill="black" />
+<circle cx="300" cy="200" r="5" fill="black" />
+<circle cx="400" cy="200" r="5" fill="black" />
+<circle cx="100" cy="300" r="5" fill="black" />
+<circle cx="200" cy="300" r="5" fill="black" />
 
 
 </svg>

@@ -183,7 +183,7 @@ void Mgraphe::afficherGraphique()
             }
             //std::cout << "-------------->" << poids_1 << " ; " << poids_2 << std::endl;
         }
-        graphique.addDisk(50+10*poids_1, 500-10*poids_2, 2.0, "red");
+        graphique.addDisk(50+400.0*poids_1/m_ptot1, 500-400.0*poids_2/m_ptot2, 2.0, "red");
         //m_tousLesPoids.push_back({poids_1, poids_2});
     }
 }
@@ -314,7 +314,7 @@ void Mgraphe::trouverSolution()
 
             if( (*this).connexe(vect_bin) == true )
             {
-                afficherSolution(vect_bin);
+                //afficherSolution(vect_bin);
                 name = "bf" + std::to_string(i);
                 m_chemin.insert({name,vect_bin});
             }
