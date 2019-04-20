@@ -20,8 +20,10 @@ public :
       void arrivecpt(std::vector<bool>&vec_bin);
      void trouverSolution();
      void afficherGraphique();
-     void kruskal(std::string fichier, std::string fichier2);
+     std::vector<bool> kruskal(std::string fichier, std::string fichier2);
      std::map<std::string , Arrete*> getMapArret();
+     Sommet* getSommet(std::string id);
+     void changerTousCC(int Cd, int Ca);
 
 private :
     std::map<std::string , Sommet*> m_sommet;
