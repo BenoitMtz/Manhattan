@@ -5,7 +5,6 @@
 #include <vector>
 #include "Arrete.h"
 #include "Sommet.h"
-#include "svgfile.h"
 
 class Mgraphe
 {
@@ -21,10 +20,8 @@ public :
       void arrivecpt(std::vector<bool>&vec_bin);
      void trouverSolution();
      void afficherGraphique();
-     std::vector<bool> kruskal(std::string fichier, std::string fichier2);
+     void kruskal(std::string fichier, std::string fichier2);
      std::map<std::string , Arrete*> getMapArret();
-     void changerTousCC(int Cd, int Ca);
-     Sommet* getSommet(std::string id);
 
 private :
     std::map<std::string , Sommet*> m_sommet;
