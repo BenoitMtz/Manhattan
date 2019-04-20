@@ -1,7 +1,7 @@
 #include "../Sommet.h"
 
-Sommet::Sommet(double x_init,double y_init,std::string id_init)
-:m_id{id_init}, m_x{x_init} , m_y{y_init}
+Sommet::Sommet(double x_init ,double y_init,std::string id_init, int cc_init)
+:m_id{id_init}, m_cc{cc_init}, m_x{x_init} , m_y{y_init}
 {
 
 }
@@ -20,7 +20,7 @@ void Sommet::ajouterVoisin(Sommet*S1,Arrete*A1)
 
 void Sommet::afficherData() const
 {
-    std::cout<<"    "<<m_id<<" : "<< " x= " << m_x<< " y= " << m_y<<std::endl;
+    std::cout<<"    "<<m_id<<" : "<< " x= " << m_x<< " y= " << m_y << " cc= " << m_cc <<std::endl;
 }
 
 void Sommet::afficher() const
@@ -59,5 +59,15 @@ bool Sommet::trouverArrete(Arrete*A1)
         }
     }
     return false ;
+}
+
+int Sommet::getCC()
+{
+    return m_cc;
+}
+
+void Sommet::setCC(int Ca)
+{
+    m_cc = Ca;
 }
 

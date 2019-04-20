@@ -32,7 +32,7 @@ Mgraphe::Mgraphe(std::string fichier1,std::string fichier2)
         ifs>>y;
         if(ifs.fail())
             throw std::runtime_error("Probleme lecture donn�es sommet : lecture y");
-        m_sommet.insert({id, new Sommet{x,y,id}});
+        m_sommet.insert({id, new Sommet{x,y,id, i}});
     }
 
     int taille;
@@ -242,6 +242,7 @@ bool Mgraphe::connexe(std::vector<bool> vect_bin)
                     s++;
                     if(s == 1)
                     {
+
                         // vect_somm.push_back(it.second->getID());
                         vect_somm.insert({it.second->getID(), 0});
                     }
@@ -319,7 +320,7 @@ void Mgraphe::trouverSolution()
 
             if( (*this).connexe(vect_bin) == true )
             {
-                //afficherSolution(vect_bin);
+                afficherSolution(vect_bin);
                 name = "bf" + std::to_string(i);
                 m_chemin.insert({name,vect_bin});
             }
@@ -328,19 +329,30 @@ void Mgraphe::trouverSolution()
     }
 }
 
-void Mgraphe::kruskal(std::string fichier, std::string fichier2)
+std::vector<bool> Mgraphe::kruskal(std::string fichier, std::string fichier2)
 {
     int test;
-    test = 1;
+    test = 2;
 
     Mgraphe main{fichier, fichier2};
 
+    Arrete* arret;
+    bool select;
+    int s = 0;
+    int cc1, cc2;
+
     std::map<std::string, Arrete*> map_arrete;
     std::vector<Arrete*> vect_arretes;
+    std::string somm1, somm2;
+
+    Sommet* Soomet1, *Soomet2;
+
+    std::vector<bool> vect_bin;
+    vect_bin.resize(m_arrete.size() );
 
     map_arrete = main.getMapArret();
 
-    for (const auto &a : map_arrete)
+    for (const auto &a : m_arrete)
     {
         vect_arretes.push_back(a.second);
     }
@@ -360,5 +372,75 @@ void Mgraphe::kruskal(std::string fichier, std::string fichier2)
         });
     }
 
+    while (vect_arretes.size() != 0)
+    {
 
+
+
+    arret = vect_arretes[vect_arretes.size()-1];
+
+//    somm1 = arret->getS1();
+//    somm2 = arret->getS2();
+
+    for (const auto&it : m_sommet)
+    {
+        select = it.second->trouverArrete(arret);
+        if(select == true )
+        {
+            s++;
+            if(s == 1)
+            {
+                std::cout << "dhfgd";
+
+                somm1 = it.second->getID();
+                Soomet1 = main.getSommet(somm1);
+                Soomet1->afficherData();
+                cc1 = Soomet1->getCC();
+            }
+            if(s == 2)
+            {
+                std::cout << "xjchdxc";
+                somm2 = it.second->getID();
+                Soomet2 = main.getSommet(somm2);
+                 Soomet2->afficherData();
+                cc2 = Soomet2->getCC();
+            }
+        }
+
+    }
+    s = 0;
+    std::cout << " cc1 " << cc1 << " cc2 " << cc2 << std::endl;
+    if (cc1 != cc2 )
+    {
+        int id_arret = 0;
+        id_arret = atoi((arret->getID()).c_str());
+        std::cout << "id_arret "<< id_arret<< std::endl;
+
+        vect_bin[m_arrete.size() - 1 - id_arret] = 1;
+
+        main.changerTousCC(cc1, cc2);
+        Soomet1->afficherData();
+        Soomet2->afficherData();
+    }
+        vect_arretes.pop_back();
+
+    }
+
+    return vect_bin;
+}
+
+void Mgraphe::changerTousCC(int Cd, int Ca)
+{
+     for ( auto &s : m_sommet)
+    {
+        if(s.second->getCC() == Ca)
+        {
+            s.second->setCC(Cd);
+        }
+    }
+}
+
+Sommet* Mgraphe::getSommet(std::string id)
+{
+   return m_sommet.find(id)->second;
 }

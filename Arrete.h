@@ -15,7 +15,7 @@ public :
     double getPoids(int test);
     std::string getS1();
     std::string getS2();
-
+    std::string getID();
 private :
     std::string m_id;
     double m_p1, m_p2;
