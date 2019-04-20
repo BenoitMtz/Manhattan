@@ -285,25 +285,43 @@ bool Mgraphe::connexe(std::vector<bool> vect_bin)
 void increment(std::vector<bool> &vec_bin)
 {
     int i = vec_bin.size() -1 ;
+    int refe=0;
+    int taille;
+    int prec1,prec2;
 
     do
     {
 
-        if(vec_bin[i] == 0)
+        if( (vec_bin[i] == 0)&&(vec_bin[i+1] == 1) )
         {
             vec_bin[i] = 1;
+            vec_bin[i+1] = 0;
+            if(refe == 1)
+            {
+                taille = vec_bin.size() -1 -(i+1);
+                taille =taille/2;
+
+                for(int j=0 ; j < taille ; j++)
+                {
+                    prec1 = vec_bin[i+2+j];
+                    prec2 = vec_bin[ vec_bin.size() -1 -j];
+                    vec_bin[i+2+j] = prec2;
+                    vec_bin[ vec_bin.size() -1 -j] = prec1;
+                }
+                i= 1000;
+            }
+
             i = 1000;
 
         }
-
-        else if( vec_bin[i] == 1 )
+        else if( (vec_bin[i] == 0)&&(i == vec_bin.size() -1) )
         {
-            vec_bin[i] = 0;
+            refe = 1;
             i--;
-            if(i < 0)
-            {
-                i = 1000;
-            }
+        }
+        else
+        {
+            i--;
         }
 
 
@@ -337,7 +355,7 @@ void Mgraphe::arrivecpt(std::vector<bool>&vec_bin)
     }
 }
 
-/*void Mgraphe::trouverSolution()
+void Mgraphe::trouverSolution()
 {
     std::vector<bool> vect_bin;
     vect_bin.resize(m_arrete.size() );
@@ -357,9 +375,9 @@ void Mgraphe::arrivecpt(std::vector<bool>&vec_bin)
     {
         i++;
         increment(vect_bin) ;
-        if( (*this).ordre(vect_bin) == true )
-        {
-            //afficherSolution(vect_bin);
+        //if( (*this).ordre(vect_bin) == true )
+        //{
+            afficherSolution(vect_bin);
             if( (*this).connexe(vect_bin) == true )
             {
                 //afficherSolution(vect_bin);
@@ -367,12 +385,12 @@ void Mgraphe::arrivecpt(std::vector<bool>&vec_bin)
                 m_chemin.insert({name,vect_bin});
             }
 
-        }
+        //}
     }
     while(vect_bin != vect_bina);
-}*/
+}
 
-void Mgraphe::trouverSolution()
+/*void Mgraphe::trouverSolution()
 {
     std::vector<bool> vect_bin;
     vect_bin.resize(m_arrete.size() );
@@ -393,7 +411,7 @@ void Mgraphe::trouverSolution()
 
         }
     }
-}
+}*/
 
 void Mgraphe::kruskal(std::string fichier, std::string fichier2)
 {
