@@ -2,14 +2,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1"  xmlns:xlink="http://www.w3.org/1999/xlink" width="1000" height="800" viewBox="0 0 2000 2000">
 
 <circle cx="100" cy="100" r="5" fill="black" />
-<circle cx="200" cy="100" r="5" fill="black" />
-<circle cx="100" cy="200" r="5" fill="black" />
+<circle cx="400" cy="100" r="5" fill="black" />
 <circle cx="200" cy="200" r="5" fill="black" />
+<<<<<<< HEAD
 <<<<<<< benoitmtz
 <line x1="100" y1="100" x2="100" y2="200" stroke="black" />
 <line x1="200" y1="100" x2="200" y2="200" stroke="black" />
 <line x1="100" y1="200" x2="200" y2="200" stroke="black" />
 =======
+=======
+<circle cx="300" cy="200" r="5" fill="black" />
+<circle cx="200" cy="300" r="5" fill="black" />
+<circle cx="300" cy="300" r="5" fill="black" />
+<circle cx="100" cy="400" r="5" fill="black" />
+<circle cx="400" cy="400" r="5" fill="black" />
+>>>>>>> develop
   
 
 <defs>
@@ -49,7 +56,10 @@
       <stop offset="100%" style="stop-color:rgb(100,100,100)" />
     </radialGradient>
   </defs>
+<<<<<<< HEAD
 >>>>>>> J'ai peur
+=======
+>>>>>>> develop
 
 
 </svg>
