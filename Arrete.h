@@ -11,6 +11,7 @@ public :
     void afficher() const;
     double getPoids_1();
     double getPoids_2();
+    double getPoids(int test);
 
 private :
     std::string m_id;
