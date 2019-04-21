@@ -16,8 +16,6 @@ public :
     std::string getS1();
     std::string getS2();
     std::string getID();
-    void setCC(int etat);
-    bool getCC();
 
 
 private :
