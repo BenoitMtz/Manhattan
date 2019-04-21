@@ -231,7 +231,7 @@ void Mgraphe::afficherGraphique()
     ///On dessine le premier point de référence pour la frontière de Pareto
 
     graphique.addDisk(gabX+tailleGraphiqueX*checkPoint.first/m_ptot1, tailleGraphiqueY+gabY-tailleGraphiqueY*checkPoint.second/m_ptot2, 3.0, "green");
-    text = std::to_string((int)checkPoint.first) + " ; " + std::to_string((int)checkPoint.first);
+    text = std::to_string((int)checkPoint.first) + " ; " + std::to_string((int)checkPoint.second);
     graphique.addText(gabX+tailleGraphiqueX*checkPoint.first/m_ptot1+5, tailleGraphiqueY+gabY-tailleGraphiqueY*checkPoint.second/m_ptot2+5, text, "grey");
 
     std::sort(m_tousLesPoids.begin(), m_tousLesPoids.end(), [](std::pair<double,double> coords_1, std::pair<double,double> coords_2)
@@ -425,20 +425,20 @@ void Mgraphe::trouverSolution()
         //if( (*this).ordre(vect_bin) == true )
         //{
             //afficherSolution(vect_bin);
-            //if( (*this).connexe(vect_bin) == true )
-            //{
+            if( (*this).connexe(vect_bin) == true )
+            {
                 i++;
                 //afficherSolution(vect_bin);
                 name = "bf" + std::to_string(i);
                 m_chemin.insert({name,vect_bin});
-            //}
+            }
 
         //}
     }
     while(vect_bin != vect_bina);
 }
 
-void Mgraphe::kruskal(std::string fichier, std::string fichier2)
+std::vector<bool> Mgraphe::kruskal(std::string fichier, std::string fichier2)
 {
     int test;
 
@@ -528,9 +528,20 @@ void Mgraphe::kruskal(std::string fichier, std::string fichier2)
     m_chemin.insert({name,vect_bin});
     return vect_bin;
 }
-=========
-/*void Mgraphe::TrouverPareto()
-{
 
-}*/
->>>>>>>>> Temporary merge branch 2
+void Mgraphe::changerTousCC(int Cd, int Ca)
+{
+    for ( auto &s : m_sommet)
+    {
+        if(s.second->getCC() == Ca)
+        {
+            s.second->setCC(Cd);
+        }
+    }
+}
+
+Sommet* Mgraphe::getSommet(std::string id)
+{
+    return m_sommet.find(id)->second;
+}
+

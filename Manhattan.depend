@@ -48,9 +48,13 @@
 
 1543797190 source:c:\users\piriyathanousan\desktop\projet info\manhattan\svgfile.cpp
 
-1543797190 elop
+1555719246 elop
 	<iostream>
 	<sstream>
+	"../MGraphe.h"
+	<fstream>
+	<iomanip>
+	<algorithm>
 
 1555671230 c:\users\benoit\desktop\info\cpp\manhattan\mgraphe.h
 	<iostream>
@@ -96,23 +100,22 @@
 1555788423 source:c:\users\piriyathanousan\desktop\projet info\manhattan\src\sommet.cpp
 	"../Sommet.h"
 
-1555664399 D
+1555666883 D
 
-1555779128 source:c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\main.cpp
+1555840918 source:c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\main.cpp
 	<iostream>
 	"MGraphe.h"
 
-1555778765 c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\mgraphe.h
+1555838555 c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\mgraphe.h
 	<iostream>
 	<map>
 	<vector>
 	"Sommet.h"
-	"svgfile.h"
 
-1555767713 c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\arrete.h
+1555836048 c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\arrete.h
 	<iostream>
 
-1555767718 c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\sommet.h
+1555836048 c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\sommet.h
 	<iostream>
 	<map>
 	"Arrete.h"
@@ -122,13 +125,13 @@
 	<fstream>
 	<set>
 
-1555767718 source:c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\src\arrete.cpp
+1555836049 source:c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\src\arrete.cpp
 	"../Arrete.h"
 
-1555767718 source:c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\src\sommet.cpp
+1555836049 source:c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\src\sommet.cpp
 	"../Sommet.h"
 
-1555767718 source:c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\src\svgfile.cpp
+1555836049 source:c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\src\svgfile.cpp
 	<iostream>
 	<sstream>
 
@@ -142,12 +145,14 @@
 
 1555666883 affichage_graphique
 
-<<<<<<< HEAD
-1555779069 source:c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\src\mgraphe.cpp
-=======
-1555719246 oitmtz
+1555838677 source:c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\src\mgraphe.cpp
+	"../MGraphe.h"
+	<fstream>
+	<iomanip>
+	<algorithm>
+	"../svgfile.h"
 
-1555683272 source:c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\src\mgraphe.cpp
+1555719246 oitmtz
 
 1555719975 source:c:\git\manhattan\src\arrete.cpp
 	"../Arrete.h"
@@ -163,11 +168,6 @@
 	"../svgfile.h"
 
 1555719246 i peur
->>>>>>> develop
-	"../MGraphe.h"
-	<fstream>
-	<iomanip>
-	<algorithm>
 
 1555721896 c:\git\manhattan\mgraphe.h
 	<iostream>

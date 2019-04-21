@@ -17,10 +17,11 @@ int main()
         std::cout<<test[i]<<" ";
     }
     std::cout<<" "<<std::endl;
+    g.afficherGraph();
     g.afficherGraphique();
 
     system("start graphique.svg");
-    //system("start graphe.svg");
+    system("start graphe.svg");
 
     return 0;
 }
