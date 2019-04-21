@@ -22,6 +22,7 @@ public :
      void afficherGraphique();
      void kruskal(std::string fichier, std::string fichier2);
      std::map<std::string , Arrete*> getMapArret();
+     void dijktra();
 
 private :
     std::map<std::string , Sommet*> m_sommet;

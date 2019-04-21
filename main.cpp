@@ -12,6 +12,8 @@ int main()
     g.trouverSolution();
     //g.afficherGraph();
 
+    //g.dijktra();
+
     g.afficherGraphique();
 
     system("start graphique.svg");
