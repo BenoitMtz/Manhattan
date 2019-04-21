@@ -292,7 +292,7 @@ void Mgraphe::afficherGraphique()
     }
         }
 
-    std::map<std::string,std::pair<double,double>> map_dijktra;
+    /*std::map<std::string,std::pair<double,double>> map_dijktra;
     std::map<std::string,std::pair<double,double>> map_dijktra_finale;
     std::pair<std::string,std::pair<double,double>> tempo = {"",{0,0}};
     std::map<Sommet*,Arrete*> neighbour;
@@ -434,7 +434,7 @@ bool Mgraphe::selec_Arete(int etat,Arrete*A1)
 
 bool increment(std::vector<bool> &vec_bin,Mgraphe&G)
 {
-    size_t i = vec_bin.size() -1 ;
+    int i = vec_bin.size() -1 ;
     int refe=0;
     int taille;
     int prec1,prec2;
