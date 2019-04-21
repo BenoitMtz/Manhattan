@@ -13,15 +13,16 @@ int main()
     g.trouverSolution();
     /*test = g.kruskal(fichier, fichier1);
     for(size_t i = 0  ; i < test.size() ; i++)
-    {
         std::cout<<test[i]<<" ";
+    {
     }
-    std::cout<<" "<<std::endl;*/
-    //g.afficherGraph();
-    //g.afficherGraphique();
+    std::cout<<" "<<std::endl;
+    g.afficherGraph();
+    g.afficherGraphique();
+    //g.dijktra();*/
 
-    //system("start graphique.svg");
-    //system("start graphe.svg");
+    system("start graphique.svg");
+    //system("start graphe.svg");*/
 
     return 0;
 }

@@ -15,6 +15,7 @@ public :
     double getX();
     double getY();
     std::string getID();
+    std::map<Sommet*,Arrete*> getNeighbour();
     bool trouverArrete(Arrete*A1);
    int getCC();
     void setCC(int Ca);
