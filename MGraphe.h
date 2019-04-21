@@ -14,9 +14,9 @@ public :
      void afficherGraph() const;
     bool increment(std::vector<bool> &vec_bin);
      friend void afficherSolution(std::vector<bool> vect_bin);
-    void departcpt(std::vector<bool>&vec_bin);
-    void arrivecpt(std::vector<bool>&vec_bin);
-     void trouverSolution();
+    void departcpt(std::vector<bool>&vec_bin,int nbarrete);
+    void arrivecpt(std::vector<bool>&vec_bin,int nbarrete);
+     void trouverSolution(int nbarrete);
      void afficherGraphique();
      std::vector<bool> kruskal(std::string fichier, std::string fichier2);
      std::map<std::string , Arrete*> getMapArret();
@@ -26,7 +26,8 @@ public :
      bool trouverSommet(Arrete*A1,std::map<std::string, int> &vect_somm);
      bool Verifier_connex();
      bool connexe1(int i,int etat);
-
+     void trouverSolucemin();
+     void trouvertouteSoluce();
 private :
     std::map<std::string , Sommet*> m_sommet;
     std::map<std::string , Arrete*> m_arrete;

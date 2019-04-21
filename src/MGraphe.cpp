@@ -461,49 +461,51 @@ bool Mgraphe::increment(std::vector<bool> &vec_bin)
 return a;
 }
 
-void Mgraphe::departcpt(std::vector<bool>&vec_bin)
+void Mgraphe::departcpt(std::vector<bool>&vec_bin,int nbarrete)
 {
-    int i = vec_bin.size() -1 ;
+    int i = nbarrete ;
     int nb = 0;
 
-    while(nb != m_sommet.size() -1)
+    while(nb != nbarrete -1)
     {
         vec_bin[i] = 1;
         (*this).connexe1(vec_bin.size() -1 -i ,1);
         i--;
         nb++;
     }
+    afficherSolution(vec_bin);
 }
 
-void Mgraphe::arrivecpt(std::vector<bool>&vec_bin)
+void Mgraphe::arrivecpt(std::vector<bool>&vec_bin,int nbarrete)
 {
     int i = 0;
     int nb = 0;
 
-    while(nb != m_sommet.size() -1)
+    while(nb != nbarrete - 1)
     {
         vec_bin[i] = 1;
         i++;
         nb++;
     }
+    afficherSolution(vec_bin);
 }
 
-void Mgraphe::trouverSolution()
+void Mgraphe::trouverSolution(int nbarrete)
 {
     std::vector<bool> vect_bin;
     bool a = false;
     std::vector<bool> vect_bina;
-    vect_bina.resize(m_arrete.size() );
+    vect_bina.resize( m_arrete.size() );
 
-    for(size_t i = 0 ; i < m_arrete.size() ; ++i)
+    for(size_t i = 0 ; i < m_arrete.size()  ; ++i)
     {
         vect_bin.push_back(0);
         (*this).connexe1(i,0);
     }
 
     std::string name;
-    (*this).departcpt(vect_bin);
-    (*this).arrivecpt(vect_bina);
+    (*this).departcpt(vect_bin, nbarrete);
+    (*this).arrivecpt(vect_bina, nbarrete);
     //afficherSolution(vect_bin);
     //afficherSolution(vect_bina);
 
@@ -513,6 +515,7 @@ void Mgraphe::trouverSolution()
     {
 
         a = (*this).increment(vect_bin) ;
+            afficherSolution(vect_bin);
             if( a == false )
             {
                 i++;
@@ -631,6 +634,31 @@ void Mgraphe::changerTousCC(int Cd, int Ca)
 Sommet* Mgraphe::getSommet(std::string id)
 {
     return m_sommet.find(id)->second;
+}
+
+void Mgraphe::trouverSolucemin()
+{
+    for(auto&it : m_chemin)
+    {
+        it.second.clear();
+    }
+    m_chemin.clear();
+
+    (*this).trouverSolution(m_sommet.size() );
+}
+
+void Mgraphe::trouvertouteSoluce()
+{
+    for( auto&it : m_chemin)
+    {
+        it.second.clear();
+    }
+    m_chemin.clear();
+
+    for(size_t i = m_sommet.size() ; i <= m_arrete.size() ; i++)
+    {
+    (*this).trouverSolution(i);
+    }
 }
 
 
