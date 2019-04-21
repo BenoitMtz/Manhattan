@@ -19,6 +19,7 @@ public :
     bool trouverArrete(Arrete*A1);
    int getCC();
     void setCC(int Ca);
+    bool verifier_connex();
 
 private :
     std::string m_id;
