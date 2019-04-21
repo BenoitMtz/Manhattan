@@ -18,11 +18,11 @@ int main()
     }
     std::cout<<" "<<std::endl;
     g.afficherGraph();
-    //g.dijktra();
+    //g.dijktra();*/
     g.afficherGraphique();
 
     system("start graphique.svg");
-    system("start graphe.svg");*/
+    //system("start graphe.svg");*/
 
     return 0;
 }

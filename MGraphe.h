@@ -3,7 +3,7 @@
 #include <iostream>
 #include <map>
 #include <vector>
-//#include "Arrete.h"
+#include "Arrete.h"
 #include "Sommet.h"
 
 class Mgraphe

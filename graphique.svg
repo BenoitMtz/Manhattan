@@ -7,19 +7,9 @@
 <polygon points=" 1450,755 1450,745 1460,750" style="fill:black" />
 <text x="3" y="50" fill="grey" >cout 1</text>
 <text x="1430" y="770" fill="grey" >cout 2</text>
-<circle cx="983.333" cy="412.069" r="2" fill="red" />
-<circle cx="1035.19" cy="387.931" r="2" fill="red" />
-<circle cx="724.074" cy="387.931" r="2" fill="red" />
-<circle cx="879.63" cy="291.379" r="2" fill="red" />
-<circle cx="931.481" cy="267.241" r="2" fill="red" />
-<circle cx="620.37" cy="267.241" r="2" fill="red" />
-<circle cx="1190.74" cy="315.517" r="2" fill="red" />
-<circle cx="879.63" cy="315.517" r="2" fill="red" />
-<circle cx="620.37" cy="267.241" r="2" fill="red" />
-<circle cx="724.074" cy="387.931" r="3" fill="green" />
-<text x="729.074" y="392.931" fill="grey" >13 ; 15</text>
-<circle cx="983.333" cy="412.069" r="3" fill="green" />
-<circle cx="620.37" cy="267.241" r="3" fill="green" />
+<circle cx="931.481" cy="291.379" r="2" fill="red" />
+<circle cx="931.481" cy="291.379" r="3" fill="green" />
+<text x="936.481" y="296.379" fill="grey" >17 ; 19</text>
 
 
 </svg>
