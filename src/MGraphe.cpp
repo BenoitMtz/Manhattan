@@ -355,35 +355,6 @@ void Mgraphe::afficherGraphique()
 }*/
 
 
-/*bool Mgraphe::ordre(std::vector<bool> vect_binaire)
-{
-    //bool select;
-    //std::vector<std::string> vect_somm;
-    //int s = 0;
-    std::string s1, s2;
-    std::map<std::string, int> vect_somm;
-    bool trouve;
-
-
-    for(size_t i = 0 ; i < m_arrete.size() ; i++)
-    {
-        if(vect_bin[vect_bin.size() - 1 - i] == 1)
-        {
-            Arrete*A1 = m_arrete.find( std::to_string(i) ) -> second ;
-            trouve = trouverSommet(A1,vect_somm);
-        }
-
-    }
-    if (vect_somm.size() == m_sommet.size())
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
-
 bool Mgraphe::trouverSommet(Arrete*A1,std::map<std::string, int> &vect_somm)
 {
     bool select;

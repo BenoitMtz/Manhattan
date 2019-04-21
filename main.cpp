@@ -21,7 +21,7 @@ int main()
     g.afficherGraphique();
     //g.dijktra();*/
 
-    system("start graphique.svg");
+    //system("start graphique.svg");
     //system("start graphe.svg");*/
 
     return 0;
