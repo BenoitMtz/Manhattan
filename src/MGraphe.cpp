@@ -231,7 +231,7 @@ void Mgraphe::afficherGraphique()
     ///On dessine le premier point de référence pour la frontière de Pareto
 
     graphique.addDisk(gabX+tailleGraphiqueX*checkPoint.first/m_ptot1, tailleGraphiqueY+gabY-tailleGraphiqueY*checkPoint.second/m_ptot2, 3.0, "green");
-    text = std::to_string((int)checkPoint.first) + " ; " + std::to_string((int)checkPoint.first);
+    text = std::to_string((int)checkPoint.first) + " ; " + std::to_string((int)checkPoint.second);
     graphique.addText(gabX+tailleGraphiqueX*checkPoint.first/m_ptot1+5, tailleGraphiqueY+gabY-tailleGraphiqueY*checkPoint.second/m_ptot2+5, text, "grey");
 
     std::sort(m_tousLesPoids.begin(), m_tousLesPoids.end(), [](std::pair<double,double> coords_1, std::pair<double,double> coords_2)
