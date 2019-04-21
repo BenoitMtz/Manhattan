@@ -12,18 +12,20 @@ public :
      Mgraphe(std::string fichier1,std::string fichier2);
      void afficher() const;
      void afficherGraph() const;
-     bool connexe(std::vector<bool> vect_bin);
-     friend void increment(std::vector<bool> &vec_bin);
+     //bool connexe(std::vector<bool> vect_bin);
+     friend bool increment(std::vector<bool> &vec_bin,Mgraphe&G);
      friend void afficherSolution(std::vector<bool> vect_bin);
-      void departcpt(std::vector<bool>&vec_bin);
-      void arrivecpt(std::vector<bool>&vec_bin);
-     void trouverSolution();
+    bool departcpt(std::vector<bool>&vec_bin,Mgraphe&G);
+    bool arrivecpt(std::vector<bool>&vec_bin,Mgraphe&G);
+     void trouverSolution(std::string fichier1,std::string fichier2);
      void afficherGraphique();
      std::vector<bool> kruskal(std::string fichier, std::string fichier2);
      std::map<std::string , Arrete*> getMapArret();
      Sommet* getSommet(std::string id);
      void changerTousCC(int Cd, int Ca);
      bool trouverSommet(Arrete*A1,std::map<std::string, int> &vect_somm);
+     bool selec_Arete(int etat,Arrete*A1);
+     bool connexe(int i,int etat);
 
 private :
     std::map<std::string , Sommet*> m_sommet;

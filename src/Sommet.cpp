@@ -71,3 +71,25 @@ void Sommet::setCC(int Ca)
     m_cc = Ca;
 }
 
+bool Sommet::SelecArrete(int etat,Arrete*A1)
+{
+    int taille = 0;
+    for(const auto&it : m_voisin)
+    {
+        if(it.second == A1)
+        {
+            it.second->setCC(etat);
+        }
+        if(it.second->getCC() == 0)
+        taille++;
+    }
+    if(taille == m_voisin.size())
+    {
+    return true;
+    }
+
+    else
+    return false ;
+}
+
+

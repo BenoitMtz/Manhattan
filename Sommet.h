@@ -18,6 +18,7 @@ public :
     bool trouverArrete(Arrete*A1);
    int getCC();
     void setCC(int Ca);
+    bool SelecArrete(int etat,Arrete*A1);
 
 private :
     std::string m_id;
