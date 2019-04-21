@@ -455,6 +455,10 @@ bool Mgraphe::increment(std::vector<bool> &vec_bin)
         {
             i--;
         }
+        if(i < 0)
+        {
+            i = 1000;
+        }
     }
     while(i < 1000);
 
@@ -463,7 +467,7 @@ return a;
 
 void Mgraphe::departcpt(std::vector<bool>&vec_bin,int nbarrete)
 {
-    int i = nbarrete ;
+    int i =  vec_bin.size() -1;
     int nb = 0;
 
     while(nb != nbarrete -1)
@@ -473,7 +477,7 @@ void Mgraphe::departcpt(std::vector<bool>&vec_bin,int nbarrete)
         i--;
         nb++;
     }
-    afficherSolution(vec_bin);
+    //afficherSolution(vec_bin);
 }
 
 void Mgraphe::arrivecpt(std::vector<bool>&vec_bin,int nbarrete)
@@ -487,10 +491,10 @@ void Mgraphe::arrivecpt(std::vector<bool>&vec_bin,int nbarrete)
         i++;
         nb++;
     }
-    afficherSolution(vec_bin);
+    //afficherSolution(vec_bin);
 }
 
-void Mgraphe::trouverSolution(int nbarrete)
+void Mgraphe::trouverSolution(int nbarrete,int&nom)
 {
     std::vector<bool> vect_bin;
     bool a = false;
@@ -509,24 +513,24 @@ void Mgraphe::trouverSolution(int nbarrete)
     //afficherSolution(vect_bin);
     //afficherSolution(vect_bina);
 
-    int i= 0;
-
     do
     {
 
         a = (*this).increment(vect_bin) ;
-            afficherSolution(vect_bin);
+            //afficherSolution(vect_bin);
             if( a == false )
             {
-                i++;
-                //afficherSolution(vect_bin);
-                name = "bf" + std::to_string(i);
+                nom++;
+                afficherSolution(vect_bin);
+                name = "bf" + std::to_string(nom);
                 m_chemin.insert({name,vect_bin});
             }
 
         //}
     }
     while(vect_bin != vect_bina);
+
+    std::cout<<m_chemin.size()<<std::endl;
 }
 
 std::vector<bool> Mgraphe::kruskal(std::string fichier, std::string fichier2)
@@ -643,8 +647,8 @@ void Mgraphe::trouverSolucemin()
         it.second.clear();
     }
     m_chemin.clear();
-
-    (*this).trouverSolution(m_sommet.size() );
+    int nom = 0;
+    (*this).trouverSolution( m_sommet.size(),nom);
 }
 
 void Mgraphe::trouvertouteSoluce()
@@ -654,10 +658,14 @@ void Mgraphe::trouvertouteSoluce()
         it.second.clear();
     }
     m_chemin.clear();
+    int nom = 0;
 
-    for(size_t i = m_sommet.size() ; i <= m_arrete.size() ; i++)
+ size_t taille = m_arrete.size() - m_sommet.size() +1;
+ //std::cout<<taille;
+    for(size_t i = 0 ; i <= taille  ; i++)
     {
-    (*this).trouverSolution(i);
+    //std::cout<<i;
+    (*this).trouverSolution( m_sommet.size() + i,nom);
     }
 }
 

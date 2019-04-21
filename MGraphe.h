@@ -16,7 +16,7 @@ public :
      friend void afficherSolution(std::vector<bool> vect_bin);
     void departcpt(std::vector<bool>&vec_bin,int nbarrete);
     void arrivecpt(std::vector<bool>&vec_bin,int nbarrete);
-     void trouverSolution(int nbarrete);
+     void trouverSolution(int nbarrete,int&nom);
      void afficherGraphique();
      std::vector<bool> kruskal(std::string fichier, std::string fichier2);
      std::map<std::string , Arrete*> getMapArret();
