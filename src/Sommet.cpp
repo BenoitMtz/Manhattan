@@ -71,5 +71,17 @@ void Sommet::setCC(int Ca)
     m_cc = Ca;
 }
 
+bool Sommet::verifier_connex()
+{
+    for(const auto&it : m_voisin)
+    {
+        if(it.second->getCC() != 0)
+        {
+            return false ;
+        }
+    }
+    return true ;
+}
+
 
 
