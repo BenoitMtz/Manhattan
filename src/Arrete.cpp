@@ -69,12 +69,3 @@ std::string Arrete::getS2()
     return m_s2;
 }
 
-void Arrete::setCC(int etat)
-{
-    m_cc = etat;
-}
-
-bool Arrete::getCC()
-{
-   return m_cc ;
-}
