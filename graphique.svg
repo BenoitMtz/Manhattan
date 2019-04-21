@@ -15,9 +15,9 @@
 <circle cx="620.37" cy="267.241" r="2" fill="red" />
 <circle cx="1190.74" cy="315.517" r="2" fill="red" />
 <circle cx="879.63" cy="315.517" r="2" fill="red" />
-<circle cx="983.333" cy="412.069" r="2" fill="red" />
+<circle cx="620.37" cy="267.241" r="2" fill="red" />
 <circle cx="724.074" cy="387.931" r="3" fill="green" />
-<text x="729.074" y="392.931" fill="grey" >13 ; 13</text>
+<text x="729.074" y="392.931" fill="grey" >13 ; 15</text>
 <circle cx="983.333" cy="412.069" r="3" fill="green" />
 <circle cx="620.37" cy="267.241" r="3" fill="green" />
 
