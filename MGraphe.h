@@ -3,7 +3,7 @@
 #include <iostream>
 #include <map>
 #include <vector>
-#include "Arrete.h"
+//#include "Arrete.h"
 #include "Sommet.h"
 #include "svgfile.h"
 
@@ -13,7 +13,6 @@ public :
      Mgraphe(std::string fichier1,std::string fichier2);
      void afficher() const;
      void afficherGraph() const;
-     bool ordre(std::vector<bool> vect_binaire);
      bool connexe(std::vector<bool> vect_bin);
      friend void increment(std::vector<bool> &vec_bin);
      friend void afficherSolution(std::vector<bool> vect_bin);
@@ -23,6 +22,7 @@ public :
      void afficherGraphique();
      void kruskal(std::string fichier, std::string fichier2);
      std::map<std::string , Arrete*> getMapArret();
+     bool trouverSommet(Arrete*A1,std::map<std::string, int> &vect_somm);
 
 private :
     std::map<std::string , Sommet*> m_sommet;
