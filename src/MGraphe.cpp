@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iomanip>
 #include <algorithm>
+#include "../svgfile.h"
 
 Mgraphe::Mgraphe(std::string fichier1,std::string fichier2)
 {
@@ -32,7 +33,7 @@ Mgraphe::Mgraphe(std::string fichier1,std::string fichier2)
         ifs>>y;
         if(ifs.fail())
             throw std::runtime_error("Probleme lecture donn�es sommet : lecture y");
-        m_sommet.insert({id, new Sommet{x,y,id}});
+        m_sommet.insert({id, new Sommet{x,y,id, i}});
     }
 
     int taille;
@@ -185,27 +186,90 @@ void Mgraphe::afficherGraph() const
 
 void Mgraphe::afficherGraphique()
 {
-    double poids_1, poids_2;
+    std::pair<double,double> coords, checkPoint = {0,0}, temponPareto, temponDraw;
     Arrete *arete_actuel;
-    Svgfile graphique("graphique.svg");
+    size_t gabX = 50, gabY = 50, tailleGraphiqueY = 700, tailleGraphiqueX = 1400;
+    m_tousLesPoids.clear();
+    std::string text;
+    Svgfile graphique("graphique.svg", 2000, 1000);
+
+    graphique.addLine(gabX, gabY, gabX, tailleGraphiqueY+gabY, "black");
+    graphique.addLine(gabX, tailleGraphiqueY+gabY, tailleGraphiqueX+gabX, tailleGraphiqueY+gabY, "black");
+    graphique.addTriangle(gabX-5, gabY, gabX+5, gabY, gabX, gabY-10, "black");
+    graphique.addTriangle(tailleGraphiqueX+gabX, tailleGraphiqueY+gabY+5, tailleGraphiqueX+gabX, tailleGraphiqueY+gabY-5, tailleGraphiqueX+gabX+10, tailleGraphiqueY+gabY, "black");
+    graphique.addText(gabX-47, gabY, "cout 1", "grey");
+    graphique.addText(tailleGraphiqueX+gabX-20, tailleGraphiqueY+gabY+20, "cout 2", "grey");
 
     for(auto& graphe : m_chemin)
     {
-        poids_1 = 0;
-        poids_2 = 0;
+        coords = {0,0};
         for(size_t j = 0 ; j < m_arrete.size() ; j++)
         {
-            if(graphe.second[m_arrete.size() - 1 - j] == true)
+            if(graphe.second[m_arrete.size()-1-j] == true)
             {
+                ///On compte le poids total de chacunes de possibilités
+
                 arete_actuel = m_arrete.find(std::to_string(j))->second;
-                poids_1 += arete_actuel->getPoids_1();
-                poids_2 += arete_actuel->getPoids_2();
+                coords.first += arete_actuel->getPoids_1();
+                coords.second += arete_actuel->getPoids_2();
             }
         }
 
-        //graphique.addDisk(50+10*poids_1, 500-10*poids_2, 2.0, "red");
+        if(coords.first+coords.second < checkPoint.first+checkPoint.second || checkPoint.first+checkPoint.second == 0)
+        {
+            ///On cherche le premier point de référence pour la frontière de Pareto
 
-        graphique.addDisk(50+400.0*poids_1/m_ptot1, 500-400.0*poids_2/m_ptot2, 2.0, "red");
+            checkPoint = coords;
+        }
+
+        ///On rempli notre tableau de point et on dessine tous les points
+
+        m_tousLesPoids.push_back(coords);
+        graphique.addDisk(gabX+tailleGraphiqueX*coords.first/m_ptot1, tailleGraphiqueY+gabY-tailleGraphiqueY*coords.second/m_ptot2, 2.0, "red");
+    }
+
+    ///On dessine le premier point de référence pour la frontière de Pareto
+
+    graphique.addDisk(gabX+tailleGraphiqueX*checkPoint.first/m_ptot1, tailleGraphiqueY+gabY-tailleGraphiqueY*checkPoint.second/m_ptot2, 3.0, "green");
+    text = std::to_string((int)checkPoint.first) + " ; " + std::to_string((int)checkPoint.first);
+    graphique.addText(gabX+tailleGraphiqueX*checkPoint.first/m_ptot1+5, tailleGraphiqueY+gabY-tailleGraphiqueY*checkPoint.second/m_ptot2+5, text, "grey");
+
+    std::sort(m_tousLesPoids.begin(), m_tousLesPoids.end(), [](std::pair<double,double> coords_1, std::pair<double,double> coords_2)
+        {
+              return coords_1.first < coords_2.first;
+        });
+    temponPareto = checkPoint;
+    for(size_t i = 0 ; i < m_tousLesPoids.size()-1 ; i++)
+    {
+        if(m_tousLesPoids[i].first > checkPoint.first)
+        {
+            if(m_tousLesPoids[i].second < temponPareto.second)
+            {
+                ///On dessine les points de Pareto de droite
+
+                temponPareto = m_tousLesPoids[i];
+                graphique.addDisk(gabX+tailleGraphiqueX*m_tousLesPoids[i].first/m_ptot1, tailleGraphiqueY+gabY-tailleGraphiqueY*m_tousLesPoids[i].second/m_ptot2, 3.0, "green");
+            }
+        }
+    }
+
+    std::sort(m_tousLesPoids.begin(), m_tousLesPoids.end(), [](std::pair<double,double> coords_1, std::pair<double,double> coords_2)
+        {
+              return coords_1.second < coords_2.second;
+        });
+    temponPareto = checkPoint;
+    for(size_t i = 0 ; i < m_tousLesPoids.size()-1 ; i++)
+    {
+        if(m_tousLesPoids[i].second > checkPoint.second)
+        {
+            if(m_tousLesPoids[i].first < temponPareto.first)
+            {
+                ///On dessine les points de Pareto de gauche
+
+                temponPareto = m_tousLesPoids[i];
+                graphique.addDisk(gabX+tailleGraphiqueX*m_tousLesPoids[i].first/m_ptot1, tailleGraphiqueY+gabY-tailleGraphiqueY*m_tousLesPoids[i].second/m_ptot2, 3.0, "green");
+            }
+        }
     }
 }
 
@@ -374,33 +438,99 @@ void Mgraphe::trouverSolution()
     while(vect_bin != vect_bina);
 }
 
-
 void Mgraphe::kruskal(std::string fichier, std::string fichier2)
 {
     int test;
-    test = 1;
+
+    do {
+        std::cout << "Quel kruskal vous souhaitez faire tourner ? "<< std::endl;
+        std::cin >> test;
+
+    }while ( test < 1 || test > 2);
 
     Mgraphe main{fichier, fichier2};
 
-    std::map<std::string , Arrete*> map_arrete;
+    Arrete* arret;
+    bool select;
+    int s = 0;
+    int cc1, cc2;
+
+    std::map<std::string, Arrete*> map_arrete;
     std::vector<Arrete*> vect_arretes;
+    std::string somm1, somm2;
+    std::string name;
 
-   map_arrete = main.getMapArret();
+    Sommet* Soomet1, *Soomet2;
 
-   for (const auto &a : map_arrete)
-   {
-       vect_arretes.push_back(a.second);
-   }
+    std::vector<bool> vect_bin;
+    vect_bin.resize(m_arrete.size() );
 
-   if (test == 1)
-   {
+    map_arrete = main.getMapArret();
 
-
-   }
-   /*
-   std::sort(vect_arretes.begin(), vect_arretes.end(), [](Arrete* s1, Arrete* s2)
+    for (const auto &a : m_arrete)
     {
-        return s1->getPoids(1) > s2->getPoids(1);
-    });*/
+        vect_arretes.push_back(a.second);
+    }
 
+    if (test == 1)
+    {
+        std::sort(vect_arretes.begin(), vect_arretes.end(), [](Arrete* s1, Arrete* s2)
+        {
+            return s1->getPoids(1) > s2->getPoids(1);
+        });
+        name = "k1";
+    }
+    else if(test == 2)
+    {
+        std::sort(vect_arretes.begin(), vect_arretes.end(), [](Arrete* s1, Arrete* s2)
+        {
+            return s1->getPoids(2) > s2->getPoids(2);
+        });
+        name = "k2";
+    }
+
+    while (vect_arretes.size() != 0)
+    {
+
+        arret = vect_arretes[vect_arretes.size()-1];
+
+        for (const auto&it : m_sommet)
+        {
+            select = it.second->trouverArrete(arret);
+            if(select == true )
+            {
+                s++;
+                if(s == 1)
+                {
+                    somm1 = it.second->getID();
+                    Soomet1 = main.getSommet(somm1);
+                    cc1 = Soomet1->getCC();
+                }
+                if(s == 2)
+                {
+                    somm2 = it.second->getID();
+                    Soomet2 = main.getSommet(somm2);
+                    cc2 = Soomet2->getCC();
+                }
+            }
+        }
+        s = 0;
+        if (cc1 != cc2 )
+        {
+            int id_arret = 0;
+            id_arret = atoi((arret->getID()).c_str());
+            vect_bin[m_arrete.size() - 1 - id_arret] = 1;
+            main.changerTousCC(cc1, cc2);
+
+        }
+        vect_arretes.pop_back();
+    }
+    m_chemin.insert({name,vect_bin});
+    return vect_bin;
 }
+=========
+/*void Mgraphe::TrouverPareto()
+{
+
+}*/
+>>>>>>>>> Temporary merge branch 2
