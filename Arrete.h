@@ -2,6 +2,7 @@
 #define ARRETE_H_INCLUDED
 #include <iostream>
 
+
 class Arrete
 {
 public :

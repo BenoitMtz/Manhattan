@@ -7,6 +7,7 @@
 <polygon points=" 1450,755 1450,745 1460,750" style="fill:black" />
 <text x="3" y="50" fill="grey" >cout 1</text>
 <text x="1430" y="770" fill="grey" >cout 2</text>
+<<<<<<< HEAD
 <circle cx="951.695" cy="387.037" r="2" fill="red" />
 <circle cx="856.78" cy="348.148" r="2" fill="red" />
 <circle cx="880.508" cy="361.111" r="2" fill="red" />
@@ -528,6 +529,11 @@
 <circle cx="690.678" cy="425.926" r="3" fill="green" />
 <circle cx="619.492" cy="400" r="3" fill="green" />
 <circle cx="595.763" cy="374.074" r="3" fill="green" />
+=======
+<circle cx="931.481" cy="291.379" r="2" fill="red" />
+<circle cx="931.481" cy="291.379" r="3" fill="green" />
+<text x="936.481" y="296.379" fill="grey" >17 ; 19</text>
+>>>>>>> develop
 
 
 </svg>
