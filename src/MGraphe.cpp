@@ -274,85 +274,58 @@ void Mgraphe::afficherGraphique()
     }
 }
 
-/*void Mgraphe::dijktra()
+void Mgraphe::dijktra()
 {
+    size_t gabX = 50, gabY = 50, tailleGraphiqueY = 700, tailleGraphiqueX = 1400;
+    Svgfile graphique("graphique_dijktra.svg", 2000, 1000);
+
     for(auto& graphe : m_chemin)
     {
+        std::map<std::string,Arrete*> map_arrete_dijktra;
+        std::map<std::string,std::pair<double,double>> map_poids_dijktra;
+        std::map<std::string,std::pair<double,double>> map_poids_dijktra_finale;
+        std::pair<std::string,std::pair<double,double>> paire_minimum = {"0", {0,0}};
+
         for(size_t j = 0 ; j < m_arrete.size() ; j++)
         {
             if(graphe.second[m_arrete.size()-1-j] == true)
             {
                 ///On compte le poids total de chacunes des possibilités
-
-                Arrete *arete_actuel = m_arrete.find(std::to_string(j))->second;
-                //coords.first += arete_actuel->getPoids_1();
-                //coords.second += arete_actuel->getPoids_2();
-                arete_actuel->afficher();
+                //coords.first += arrete_actuel->getPoids_1();
+                //coords.second += arrete_actuel->getPoids_2();
+                map_arrete_dijktra.insert(*m_arrete.find(std::to_string(j)));
             }
-    }
         }
 
-    /*std::map<std::string,std::pair<double,double>> map_dijktra;
-    std::map<std::string,std::pair<double,double>> map_dijktra_finale;
-    std::pair<std::string,std::pair<double,double>> tempo = {"",{0,0}};
-    std::map<Sommet*,Arrete*> neighbour;
-    for(const auto& sommet : m_sommet)
-
-    {
-        while(map_dijktra_finale.size() < m_sommet.size()-1)
+        while(map_poids_dijktra_finale.size() <= m_sommet.size())
         {
-            if(tempo.first != "")
-            //std::cout << tempo.second.first << std::endl;
+            std::string sommet_id = paire_minimum.first;
+            for(auto& paire_arrete : map_arrete_dijktra)
             {
-                neighbour = m_sommet.find(tempo.first)->second->getNeighbour();
-            }
-            else
-            {
-                neighbour = sommet.second->getNeighbour();
-            for(auto& paireSA : neighbour)
-            }
-            {
-                //for(auto it = result.first ; it != result.second ; it++)
-                //auto result = map_dijktra.equal_range(paireSA.first->getID());
+                if(paire_arrete.second->getS1() == sommet_id)
                 {
-                    {
-                    //if(paireSA.second->getPoids_2()+tempo.second.second < it->second.second)
-                        map_dijktra.insert({paireSA.first->getID(), {paireSA.second->getPoids_1()+tempo.second.first, paireSA.second->getPoids_2()+tempo.second.second}});
-                    }
-                }
-                //if(paireSA.second->getPoids_2()+tempo.second.second < map_dijktra.find(paireSA.first->getID())-> || )
-                //{
+                    //map_poids_dijktra.insert(sommet_id, {paire_arrete.second->getPoids_1() + paire_minimum.second.first, paire_arrete.second->getPoids_2() + paire_minimum.second.second});
 
-                //}
+                }
             }
 
+            auto min_it = std::min_element(map_poids_dijktra.begin(), map_poids_dijktra.end(),[](const std::pair<std::string, std::pair<double,double>>& p1, const std::pair<std::string, std::pair<double,double>>& p2)
             {
-            auto min_poidsChemin = std::min_element(map_dijktra.begin(), map_dijktra.end(),[](const std::pair<std::string, std::pair<double,double>>& p1, const std::pair<std::string, std::pair<double,double>>& p2)
                 return p1.second.second < p2.second.second;
             });
-            //std::cout << "============> " << min_poidsChemin->second <<std::endl;
-            tempo = *min_poidsChemin;
-            while(map_dijktra.find(min_poidsChemin->first) != map_dijktra.end())
-            {
-                map_dijktra.erase(map_dijktra.find(min_poidsChemin->first));
-            }
 
-            map_dijktra_finale.insert(tempo);
-            //std::cout << "tempo " << tempo.first << " : " << tempo.second.first << " ; " << tempo.second.second << std::endl;
-            //std::cout << map_dijktra_finale.size() << std::endl;
-            //map_dijktra.find(it->first)->first;
+            paire_minimum = *min_it;
+            map_poids_dijktra_finale.insert(paire_minimum);
         }
-        std::cout << "---------> depart sommet numero " << sommet.first << std::endl;
-        for(const auto& sommet_dijktra : map_dijktra_finale)
-            std::cout << "sommet numero " << sommet_dijktra.first << " : " << sommet_dijktra.second.first << " ; " << sommet_dijktra.second.second << std::endl;
-        }
+        unsigned int poidsTotalGraphe_1 = 0, poidsTotalGraphe_2 = 0;
+        for(auto& finale : map_poids_dijktra_finale)
         {
-        map_dijktra_finale.clear();
-        tempo = {"",{0,0}};
+            poidsTotalGraphe_1 += (unsigned int)finale.second.first;
+            poidsTotalGraphe_2 += (unsigned int)finale.second.second;
+        }
+        graphique.addDisk(gabX+tailleGraphiqueX*poidsTotalGraphe_1/1000, tailleGraphiqueY+gabY-tailleGraphiqueY*poidsTotalGraphe_2/1000, 2.0, "red");
     }
-
-
-}*/
+}
 
 
 bool Mgraphe::trouverSommet(Arrete*A1,std::map<std::string, int> &vect_somm)
