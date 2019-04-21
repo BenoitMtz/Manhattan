@@ -3,7 +3,7 @@
 #include <iostream>
 #include <map>
 #include <vector>
-#include "Arrete.h"
+//#include "Arrete.h"
 #include "Sommet.h"
 
 class Mgraphe
@@ -12,7 +12,6 @@ public :
      Mgraphe(std::string fichier1,std::string fichier2);
      void afficher() const;
      void afficherGraph() const;
-     bool ordre(std::vector<bool> vect_binaire);
      bool connexe(std::vector<bool> vect_bin);
      friend void increment(std::vector<bool> &vec_bin);
      friend void afficherSolution(std::vector<bool> vect_bin);
@@ -24,6 +23,7 @@ public :
      std::map<std::string , Arrete*> getMapArret();
      Sommet* getSommet(std::string id);
      void changerTousCC(int Cd, int Ca);
+     bool trouverSommet(Arrete*A1,std::map<std::string, int> &vect_somm);
 
 private :
     std::map<std::string , Sommet*> m_sommet;

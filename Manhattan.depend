@@ -98,39 +98,37 @@
 
 1555664399 D
 
-1555683349 source:c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\main.cpp
+1555779128 source:c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\main.cpp
 	<iostream>
 	"MGraphe.h"
-	"svgfile.h"
 
-1555682293 c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\mgraphe.h
+1555778765 c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\mgraphe.h
 	<iostream>
 	<map>
 	<vector>
-	"Arrete.h"
 	"Sommet.h"
 	"svgfile.h"
 
-1555675690 c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\arrete.h
+1555767713 c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\arrete.h
 	<iostream>
 
-1555667718 c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\sommet.h
+1555767718 c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\sommet.h
 	<iostream>
 	<map>
 	"Arrete.h"
 
-1555675693 c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\svgfile.h
+1555767718 c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\svgfile.h
 	<string>
 	<fstream>
 	<set>
 
-1555675693 source:c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\src\arrete.cpp
+1555767718 source:c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\src\arrete.cpp
 	"../Arrete.h"
 
-1555667719 source:c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\src\sommet.cpp
+1555767718 source:c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\src\sommet.cpp
 	"../Sommet.h"
 
-1555675693 source:c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\src\svgfile.cpp
+1555767718 source:c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\src\svgfile.cpp
 	<iostream>
 	<sstream>
 
@@ -144,6 +142,9 @@
 
 1555666883 affichage_graphique
 
+<<<<<<< HEAD
+1555779069 source:c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\src\mgraphe.cpp
+=======
 1555719246 oitmtz
 
 1555683272 source:c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\src\mgraphe.cpp
@@ -162,6 +163,7 @@
 	"../svgfile.h"
 
 1555719246 i peur
+>>>>>>> develop
 	"../MGraphe.h"
 	<fstream>
 	<iomanip>

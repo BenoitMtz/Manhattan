@@ -1,6 +1,5 @@
 #include <iostream>
 #include "MGraphe.h"
-#include "svgfile.h"
 
 int main()
 {
