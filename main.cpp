@@ -10,8 +10,8 @@ int main()
 
 
     //g.afficher();
-    g.trouverSolution();
-    test = g.kruskal(fichier, fichier1);
+    g.trouverSolution(fichier,fichier1);
+    /*test = g.kruskal(fichier, fichier1);
     for(size_t i = 0  ; i < test.size() ; i++)
     {
         std::cout<<test[i]<<" ";
@@ -21,7 +21,7 @@ int main()
     g.afficherGraphique();
 
     system("start graphique.svg");
-    system("start graphe.svg");
+    system("start graphe.svg");*/
 
     return 0;
 }

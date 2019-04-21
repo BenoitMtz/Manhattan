@@ -16,10 +16,14 @@ public :
     std::string getS1();
     std::string getS2();
     std::string getID();
+    void setCC(int etat);
+    bool getCC();
+
 
 private :
     std::string m_id;
     double m_p1, m_p2;
+    int m_cc;
     std::string m_s1, m_s2;
 };
 
