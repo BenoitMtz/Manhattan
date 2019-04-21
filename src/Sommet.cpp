@@ -49,6 +49,11 @@ std::string Sommet::getID()
     return m_id;
 }
 
+std::map<Sommet*,Arrete*> Sommet::getNeighbour()
+{
+    return m_voisin;
+}
+
 bool Sommet::trouverArrete(Arrete*A1)
 {
     for(const auto&it : m_voisin)

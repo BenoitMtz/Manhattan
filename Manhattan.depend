@@ -160,23 +160,24 @@
 1555719975 c:\git\manhattan\arrete.h
 	<iostream>
 
-1555762212 source:c:\git\manhattan\src\mgraphe.cpp
+1555855543 source:c:\git\manhattan\src\mgraphe.cpp
 	"../MGraphe.h"
 	<fstream>
 	<iomanip>
 	<algorithm>
+	<iterator>
 	"../svgfile.h"
 
 1555719246 i peur
 
-1555721896 c:\git\manhattan\mgraphe.h
+1555767865 c:\git\manhattan\mgraphe.h
 	<iostream>
 	<map>
 	<vector>
 	"Arrete.h"
 	"Sommet.h"
 
-1555718912 c:\git\manhattan\sommet.h
+1555769693 c:\git\manhattan\sommet.h
 	<iostream>
 	<map>
 	"Arrete.h"
@@ -186,14 +187,14 @@
 	<fstream>
 	<set>
 
-1555718912 source:c:\git\manhattan\src\sommet.cpp
+1555769693 source:c:\git\manhattan\src\sommet.cpp
 	"../Sommet.h"
 
 1555721813 source:c:\git\manhattan\src\svgfile.cpp
 	<iostream>
 	<sstream>
 
-1555762301 source:c:\git\manhattan\main.cpp
+1555773054 source:c:\git\manhattan\main.cpp
 	<iostream>
 	"MGraphe.h"
 	"svgfile.h"

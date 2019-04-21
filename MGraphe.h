@@ -21,6 +21,7 @@ public :
      void afficherGraphique();
      std::vector<bool> kruskal(std::string fichier, std::string fichier2);
      std::map<std::string , Arrete*> getMapArret();
+     void dijktra();
      Sommet* getSommet(std::string id);
      void changerTousCC(int Cd, int Ca);
      bool trouverSommet(Arrete*A1,std::map<std::string, int> &vect_somm);
