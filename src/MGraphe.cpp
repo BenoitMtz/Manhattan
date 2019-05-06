@@ -34,7 +34,7 @@ Mgraphe::Mgraphe(std::string fichier1,std::string fichier2)
         ifs>>y;
         if(ifs.fail())
             throw std::runtime_error("Probleme lecture donn�es sommet : lecture y");
-        m_sommet.insert({id, new Sommet{x,y,id, i}});
+        m_sommet.insert({id, new Sommet{x,y,id,i}});
     }
 
     int taille;
@@ -62,7 +62,6 @@ Mgraphe::Mgraphe(std::string fichier1,std::string fichier2)
         /// la on peut remplir notre vecteur de bool
         m_sommet.find(id)->second->ajouterVoisin(m_sommet.find(id_voisin)->second, arr);
         m_sommet.find(id_voisin)->second->ajouterVoisin(m_sommet.find(id)->second, arr);
-
     }
 
     ifs2 >> ordre;
@@ -129,23 +128,15 @@ void afficherSolution(std::vector<bool> vect_bin)
     std::cout<<" "<<std::endl;
 }
 
-void Mgraphe::afficherGraph() const
+bool Mgraphe::afficherGraph(std::string indice) const
 {
-    std::string indice;
-    /*for(auto const&it : m_chemin)
+    if(m_chemin.find(indice) != m_chemin.end())
     {
-        std::cout<<it.first<<std::endl;
-    }*/
-    std::cout<<"entrer l'indice du graphe a afficher"<<std::endl;
-    std::cin>>indice;
-
-    afficherSolution(m_chemin.find(indice)->second);
+        afficherSolution(m_chemin.find(indice)->second);
 
     std::vector<bool> vec_bin = m_chemin.find(indice)->second;
 
     Svgfile svgout("graphe.svg");
-
-
 
     bool select;
     int s = 0;
@@ -182,6 +173,13 @@ void Mgraphe::afficherGraph() const
             s=0;
             svgout.addLine(xd,yd,xa,ya,"black");
         }
+    }
+    return true;
+    }
+    else
+    {
+        std::cout << "ERREUR" << std::endl;
+        return false;
     }
 }
 
@@ -233,7 +231,7 @@ void Mgraphe::afficherGraphique()
 
     graphique.addDisk(gabX+tailleGraphiqueX*checkPoint.first/m_ptot1, tailleGraphiqueY+gabY-tailleGraphiqueY*checkPoint.second/m_ptot2, 3.0, "green");
     text = std::to_string((int)checkPoint.first) + " ; " + std::to_string((int)checkPoint.second);
-    graphique.addText(gabX+tailleGraphiqueX*checkPoint.first/m_ptot1+5, tailleGraphiqueY+gabY-tailleGraphiqueY*checkPoint.second/m_ptot2+5, text, "grey");
+    graphique.addText(gabX+tailleGraphiqueX*checkPoint.first/m_ptot1-50, tailleGraphiqueY+gabY-tailleGraphiqueY*checkPoint.second/m_ptot2+10, text, "grey");
 
     std::sort(m_tousLesPoids.begin(), m_tousLesPoids.end(), [](std::pair<double,double> coords_1, std::pair<double,double> coords_2)
     {
@@ -274,85 +272,77 @@ void Mgraphe::afficherGraphique()
     }
 }
 
-/*void Mgraphe::dijktra()
+void Mgraphe::dijktra()
 {
+    /*size_t gabX = 50, gabY = 50, tailleGraphiqueY = 700, tailleGraphiqueX = 1400;
+    Svgfile graphique("graphique_dijktra.svg", 2000, 1000);
+
     for(auto& graphe : m_chemin)
     {
+        std::map<std::string,Arrete*> map_arrete_dijktra;
+        std::map<std::string,std::pair<double,double>> map_poids_dijktra;
+        std::map<std::string,std::pair<double,double>> map_poids_dijktra_finale;
+        std::pair<std::string,std::pair<double,double>> paire_minimum = {"0", {0,0}};
+
         for(size_t j = 0 ; j < m_arrete.size() ; j++)
         {
             if(graphe.second[m_arrete.size()-1-j] == true)
             {
-                ///On compte le poids total de chacunes des possibilités
-
-                Arrete *arete_actuel = m_arrete.find(std::to_string(j))->second;
-                //coords.first += arete_actuel->getPoids_1();
-                //coords.second += arete_actuel->getPoids_2();
-                arete_actuel->afficher();
+                map_arrete_dijktra.insert(*m_arrete.find(std::to_string(j)));
+                std::cout << "On insert un nouveau truc dans map_arrete_dijktra " << std::endl;
             }
-    }
         }
 
-    /*std::map<std::string,std::pair<double,double>> map_dijktra;
-    std::map<std::string,std::pair<double,double>> map_dijktra_finale;
-    std::pair<std::string,std::pair<double,double>> tempo = {"",{0,0}};
-    std::map<Sommet*,Arrete*> neighbour;
-    for(const auto& sommet : m_sommet)
-
-    {
-        while(map_dijktra_finale.size() < m_sommet.size()-1)
+        while(map_poids_dijktra_finale.size() <= m_sommet.size())
         {
-            if(tempo.first != "")
-            //std::cout << tempo.second.first << std::endl;
+            for(auto& paire_arrete : map_arrete_dijktra)
             {
-                neighbour = m_sommet.find(tempo.first)->second->getNeighbour();
-            }
-            else
-            {
-                neighbour = sommet.second->getNeighbour();
-            for(auto& paireSA : neighbour)
-            }
-            {
-                //for(auto it = result.first ; it != result.second ; it++)
-                //auto result = map_dijktra.equal_range(paireSA.first->getID());
+                std::string sommet_id;
+                for(auto& sommet : m_sommet)
                 {
+                    if(sommet.second->trouverArrete(paire_arrete.second))
                     {
-                    //if(paireSA.second->getPoids_2()+tempo.second.second < it->second.second)
-                        map_dijktra.insert({paireSA.first->getID(), {paireSA.second->getPoids_1()+tempo.second.first, paireSA.second->getPoids_2()+tempo.second.second}});
+                        sommet_id = sommet.first;
+                        break;
                     }
                 }
-                //if(paireSA.second->getPoids_2()+tempo.second.second < map_dijktra.find(paireSA.first->getID())-> || )
-                //{
-
-                //}
+                std::cout << paire_minimum.first  << " ; " << sommet_id << std::endl;
+                if(sommet_id == paire_minimum.first)
+                {
+                    std::cout << "sefbvs : " << paire_minimum.first << std::endl;
+                    std::pair<std::string,std::pair<double,double>> paire_temop = {paire_minimum.first, {paire_arrete.second->getPoids_1() + paire_minimum.second.first, paire_arrete.second->getPoids_2() + paire_minimum.second.second} };
+                    //map_poids_dijktra.insert(sommet_id, std::make_pair(paire_arrete.second->getPoids_1() + paire_minimum.second.first, paire_arrete.second->getPoids_2() + paire_minimum.second.second));
+                    map_poids_dijktra.insert(paire_temop);
+                    std::cout << "paire_temop => " << paire_temop.first << std::endl;
+                }
             }
 
+            auto it = std::min_element(map_poids_dijktra.begin(), map_poids_dijktra.end(),[](const std::pair<std::string, std::pair<double,double>>& p1, const std::pair<std::string, std::pair<double,double>>& p2)
             {
-            auto min_poidsChemin = std::min_element(map_dijktra.begin(), map_dijktra.end(),[](const std::pair<std::string, std::pair<double,double>>& p1, const std::pair<std::string, std::pair<double,double>>& p2)
                 return p1.second.second < p2.second.second;
             });
-            //std::cout << "============> " << min_poidsChemin->second <<std::endl;
-            tempo = *min_poidsChemin;
-            while(map_dijktra.find(min_poidsChemin->first) != map_dijktra.end())
+
+            for(auto& paire : map_poids_dijktra)
             {
-                map_dijktra.erase(map_dijktra.find(min_poidsChemin->first));
+                if(paire.second.second < paire_minimum.second.second || paire_minimum.second.second == 0)
+                {
+                    paire_minimum = paire;
+                }
             }
-
-            map_dijktra_finale.insert(tempo);
-            //std::cout << "tempo " << tempo.first << " : " << tempo.second.first << " ; " << tempo.second.second << std::endl;
-            //std::cout << map_dijktra_finale.size() << std::endl;
-            //map_dijktra.find(it->first)->first;
+            paire_minimum = *it;
+            map_poids_dijktra.erase(it);
+            map_poids_dijktra_finale.insert(paire_minimum);
+            system("pause");
         }
-        std::cout << "---------> depart sommet numero " << sommet.first << std::endl;
-        for(const auto& sommet_dijktra : map_dijktra_finale)
-            std::cout << "sommet numero " << sommet_dijktra.first << " : " << sommet_dijktra.second.first << " ; " << sommet_dijktra.second.second << std::endl;
-        }
+        unsigned int poidsTotalGraphe_1 = 0, poidsTotalGraphe_2 = 0;
+        for(auto& finale : map_poids_dijktra_finale)
         {
-        map_dijktra_finale.clear();
-        tempo = {"",{0,0}};
-    }
-
-
-}*/
+            poidsTotalGraphe_1 += (unsigned int)finale.second.first;
+            poidsTotalGraphe_2 += (unsigned int)finale.second.second;
+        }
+        graphique.addDisk(gabX+tailleGraphiqueX*poidsTotalGraphe_1/1000, tailleGraphiqueY+gabY-tailleGraphiqueY*poidsTotalGraphe_2/1000, 2.0, "red");
+    }*/
+}
 
 
 bool Mgraphe::trouverSommet(Arrete*A1,std::map<std::string, int> &vect_somm)
@@ -521,7 +511,7 @@ void Mgraphe::trouverSolution(int nbarrete,int&nom)
             if( a == false )
             {
                 nom++;
-                afficherSolution(vect_bin);
+                //afficherSolution(vect_bin);
                 name = "bf" + std::to_string(nom);
                 m_chemin.insert({name,vect_bin});
             }
@@ -530,19 +520,11 @@ void Mgraphe::trouverSolution(int nbarrete,int&nom)
     }
     while(vect_bin != vect_bina);
 
-    std::cout<<m_chemin.size()<<std::endl;
+    //std::cout<<m_chemin.size()<<std::endl;
 }
 
-std::vector<bool> Mgraphe::kruskal(std::string fichier, std::string fichier2)
+std::vector<bool> Mgraphe::kruskal(std::string fichier, std::string fichier2, int test)
 {
-    int test;
-
-    do {
-        std::cout << "Quel kruskal vous souhaitez faire tourner ? "<< std::endl;
-        std::cin >> test;
-
-    }while ( test < 1 || test > 2);
-
     Mgraphe main{fichier, fichier2};
 
     Arrete* arret;

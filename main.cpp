@@ -3,26 +3,56 @@
 
 int main()
 {
-    std::string fichier = "files/cubetown.txt";
-    std::string fichier1 = "files/cubetown_weights_0.txt";
-    Mgraphe g{fichier, fichier1};
-    std::vector<bool> test;
-
-    //g.afficher();
-    g.trouvertouteSoluce();
-    //g.trouverSolucemin();
-    /*test = g.kruskal(fichier, fichier1);
-    for(size_t i = 0  ; i < test.size() ; i++)
-        std::cout<<test[i]<<" ";
+    bool booleen;
+    while(true)
     {
-    }
-    std::cout<<" "<<std::endl;*/
-    //g.afficherGraph();
-    g.afficherGraphique();
-    //g.dijktra();
+        std::string nom;
+        size_t choix = 0;
 
-    //system("start graphique.svg");
-    //system("start graphe.svg");*/
+        std::cout << "Veuillez saisir une ville : ";
+        std::cin >> nom;
+
+        std::string fichier = "files/" + nom + ".txt";
+        std::string fichier1 = "files/" + nom + "_weights_0.txt";
+
+        Mgraphe g{fichier, fichier1};
+
+        do
+        {
+            std::cout << "Voulez vous afficher toutes les solutions (1) ou des solutions plus optimales (2) ? : ";
+            std::cin >> choix;
+            if(choix != 1 && choix != 2)
+            {
+                std::cout << "ERROR" << std::endl;
+            }
+        }
+        while(choix != 1 && choix != 2);
+
+        if(choix == 1)
+        {
+            g.trouvertouteSoluce();
+        }
+        else
+        {
+            g.trouverSolucemin();
+        }
+        g.kruskal(fichier, fichier1, 1);
+        g.kruskal(fichier, fichier1, 2);
+        g.dijktra();
+        g.afficherGraphique();
+        system("start graphique.svg");
+
+        do
+        {
+            std::string indice;
+            std::cout<<"Entrez l'indice du graphe a afficher dans \"graphe.svg\" (ex: \"bf2\", pour le 2e graphe bruteforce ou \"k1\" et \"k2\" pour les kruskal du poids 1 ou 2) : ";
+            std::cin>>indice;
+            booleen = g.afficherGraph(indice);
+        }
+        while(!booleen);
+        system("start graphe.svg");
+        system("cls");
+    }
 
     return 0;
 }

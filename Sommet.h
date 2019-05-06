@@ -17,6 +17,7 @@ public :
     std::string getID();
     std::map<Sommet*,Arrete*> getNeighbour();
     bool trouverArrete(Arrete*A1);
+    std::string trouverSommetID(Arrete*A1);
    int getCC();
     void setCC(int Ca);
     bool verifier_connex();

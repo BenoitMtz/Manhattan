@@ -66,6 +66,19 @@ bool Sommet::trouverArrete(Arrete*A1)
     return false ;
 }
 
+std::string Sommet::trouverSommetID(Arrete*A1)
+{
+    std::string erreur("Erreur de recherche du sommet correspondant a cette arete.");
+    for(const auto&it : m_voisin)
+    {
+        if(it.second == A1)
+        {
+            return it.first->getID();
+        }
+    }
+    return erreur;
+}
+
 int Sommet::getCC()
 {
     return m_cc;

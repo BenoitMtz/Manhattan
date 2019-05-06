@@ -14,9 +14,9 @@ public :
     double getPoids_1();
     double getPoids_2();
     double getPoids(int test);
-    std::string getS1();
-    std::string getS2();
-    std::string getID();
+    std::string getS1() const;
+    std::string getS2() const;
+    std::string getID() const;
     int getCC();
     void setCC(int etat);
 

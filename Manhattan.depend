@@ -1,152 +1,34 @@
 # depslib dependency file v1.0
-2009741283 ççTˇˇˇãV(É•Hˇˇˇ
+1555948334 source:c:\git\manhattan\src\arrete.cpp
+	"../Arrete.h"
 
-1555666066 source:c:\users\benoit\desktop\info\cpp\manhattan\main.cpp
+1555948328 c:\git\manhattan\arrete.h
 	<iostream>
-	"MGraphe.h"
-	"svgfile.h"
 
-1555664760 source:c:\users\benoit\desktop\info\cpp\manhattan\src\svgfile.cpp
+1555952380 source:c:\git\manhattan\src\sommet.cpp
+	"../Sommet.h"
+
+1555952361 c:\git\manhattan\sommet.h
+	<iostream>
+	<map>
+	"Arrete.h"
+
+1555882148 source:c:\git\manhattan\src\svgfile.cpp
 	<iostream>
 	<sstream>
 
-1555636646 source:c:\users\piriyathanousan\desktop\projet info\manhattan\arrete.cpp
-	"Arrete.h"
-
-1555788490 c:\users\piriyathanousan\desktop\projet info\manhattan\arrete.h
-	<iostream>
-
-1555774947 source:c:\users\piriyathanousan\desktop\projet info\manhattan\main.cpp
+1555963165 source:c:\git\manhattan\main.cpp
 	<iostream>
 	"MGraphe.h"
-	"svgfile.h"
 
-1555788019 c:\users\piriyathanousan\desktop\projet info\manhattan\mgraphe.h
+1555946153 c:\git\manhattan\mgraphe.h
 	<iostream>
 	<map>
 	<vector>
 	"Arrete.h"
 	"Sommet.h"
 
-1555788423 c:\users\piriyathanousan\desktop\projet info\manhattan\sommet.h
-	<iostream>
-	<map>
-	"Arrete.h"
-
-1555675692 c:\users\piriyathanousan\desktop\projet info\manhattan\svgfile.h
-	<string>
-	<fstream>
-	<set>
-
-1555658040 source:c:\users\piriyathanousan\desktop\projet info\manhattan\mgraphe.cpp
-	"MGraphe.h"
-	<fstream>
-	<iomanip>
-
-1555639144 source:c:\users\piriyathanousan\desktop\projet info\manhattan\sommet.cpp
-	"Sommet.h"
-
-1543797190 source:c:\users\piriyathanousan\desktop\projet info\manhattan\svgfile.cpp
-
-1555719246 elop
-	<iostream>
-	<sstream>
-	"../MGraphe.h"
-	<fstream>
-	<iomanip>
-	<algorithm>
-
-1555671230 c:\users\benoit\desktop\info\cpp\manhattan\mgraphe.h
-	<iostream>
-	<map>
-	<vector>
-	"Arrete.h"
-	"Sommet.h"
-	"svgfile.h"
-
-1555671230 c:\users\benoit\desktop\info\cpp\manhattan\arrete.h
-	<iostream>
-
-1555671230 c:\users\benoit\desktop\info\cpp\manhattan\sommet.h
-	<iostream>
-	<map>
-	"Arrete.h"
-
-1555664760 c:\users\benoit\desktop\info\cpp\manhattan\svgfile.h
-	<string>
-	<fstream>
-	<set>
-
-1555666804 source:c:\users\benoit\desktop\info\cpp\manhattan\src\arrete.cpp
-	"../Arrete.h"
-
-1555671230 source:c:\users\benoit\desktop\info\cpp\manhattan\src\sommet.cpp
-	"../Sommet.h"
-
-1555788490 source:c:\users\piriyathanousan\desktop\projet info\manhattan\src\arrete.cpp
-	"../Arrete.h"
-
-1555788377 source:c:\users\piriyathanousan\desktop\projet info\manhattan\src\mgraphe.cpp
-	"../MGraphe.h"
-	<fstream>
-	<iomanip>
-	<algorithm>
-	"../svgfile.h"
-
-1555774824 source:c:\users\piriyathanousan\desktop\projet info\manhattan\src\svgfile.cpp
-	<iostream>
-	<sstream>
-
-1555788423 source:c:\users\piriyathanousan\desktop\projet info\manhattan\src\sommet.cpp
-	"../Sommet.h"
-
-1555666883 D
-
-1555883714 source:c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\main.cpp
-	<iostream>
-	"MGraphe.h"
-
-1555884082 c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\mgraphe.h
-	<iostream>
-	<map>
-	<vector>
-	"Arrete.h"
-	"Sommet.h"
-
-1555877427 c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\arrete.h
-	<iostream>
-
-1555877427 c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\sommet.h
-	<iostream>
-	<map>
-	"Arrete.h"
-
-1555767718 c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\svgfile.h
-	<string>
-	<fstream>
-	<set>
-
-1555877418 source:c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\src\arrete.cpp
-	"../Arrete.h"
-
-1555877427 source:c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\src\sommet.cpp
-	"../Sommet.h"
-
-1555836049 source:c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\src\svgfile.cpp
-	<iostream>
-	<sstream>
-
-1555667719 
-
-1555666087 source:c:\users\benoit\desktop\info\cpp\manhattan\src\mgraphe.cpp
-	"../MGraphe.h"
-	<fstream>
-	<iomanip>
-	<algorithm>
-
-1555666883 affichage_graphique
-
-1555884150 source:c:\users\thoma\onedrive\documents\theorie des graphes\manhattan\src\mgraphe.cpp
+1555963359 source:c:\git\manhattan\src\mgraphe.cpp
 	"../MGraphe.h"
 	<fstream>
 	<iomanip>
@@ -154,49 +36,8 @@
 	<iterator>
 	"../svgfile.h"
 
-1555719246 oitmtz
-
-1555855622 source:c:\git\manhattan\src\arrete.cpp
-	"../Arrete.h"
-
-1555856508 c:\git\manhattan\arrete.h
-	<iostream>
-
-1555856446 source:c:\git\manhattan\src\mgraphe.cpp
-	"../MGraphe.h"
-	<fstream>
-	<iomanip>
-	<algorithm>
-	<iterator>
-	"../svgfile.h"
-
-1555719246 i peur
-
-1555856508 c:\git\manhattan\mgraphe.h
-	<iostream>
-	<map>
-	<vector>
-	"Arrete.h"
-	"Sommet.h"
-
-1555855632 c:\git\manhattan\sommet.h
-	<iostream>
-	<map>
-	"Arrete.h"
-
-1555721813 c:\git\manhattan\svgfile.h
+1555882148 c:\git\manhattan\svgfile.h
 	<string>
 	<fstream>
 	<set>
-
-1555855632 source:c:\git\manhattan\src\sommet.cpp
-	"../Sommet.h"
-
-1555721813 source:c:\git\manhattan\src\svgfile.cpp
-	<iostream>
-	<sstream>
-
-1555856588 source:c:\git\manhattan\main.cpp
-	<iostream>
-	"MGraphe.h"
 

@@ -54,17 +54,17 @@ double Arrete::getPoids(int test)
     return 1;
 }
 
-std::string Arrete::getID()
+std::string Arrete::getID() const
 {
     return m_id;
 }
 
-std::string Arrete::getS1()
+std::string Arrete::getS1() const
 {
     return m_s1;
 }
 
-std::string Arrete::getS2()
+std::string Arrete::getS2() const
 {
     return m_s2;
 }
