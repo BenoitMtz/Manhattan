@@ -41,6 +41,21 @@ Svgfile::Svgfile(std::string _filename, int _width, int _height) :
     // Writing the header into the SVG file
     m_ostrm << svgHeader;
     m_ostrm << "width=\"" << m_width << "\" height=\"" << m_height << "\">\n\n";
+
+    if(m_filename == "graphique.svg")
+    {
+        addGrid(10, 0, "lightgrey");
+        addLine(50, 50, 50, 500, "black");
+        addLine(50, 500, 500, 500, "black");
+        addTriangle(50-5, 50,
+                    50+5, 50,
+                    50, 50-10,
+                     "black");
+        addTriangle(500, 500+5,
+                    500, 500-5,
+                    500+10, 500,
+                     "black");
+    }
 }
 
 Svgfile::~Svgfile()
@@ -62,7 +77,6 @@ std::string attrib(std::string name, T val)
     oss << name << "=\"" << val << "\" ";
     return oss.str();
 }
-
 void Svgfile::addEllipseAnimate(double x, double y , double r ,std::string color, std::string color1,int grad)
 {
     double coeff = r/50;

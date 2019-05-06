@@ -6,13 +6,6 @@ Arrete::Arrete(std::string id_init)
 
 }
 
-Arrete::Arrete(std::string id_init, std::string S1, std::string S2)
-:m_id{id_init}, m_s1{S1}, m_s2{S2}
-{
-
-}
-
-
 Arrete::Arrete()
 :m_id{0} , m_p1{0} , m_p2{0}
 {
@@ -41,42 +34,3 @@ double Arrete::getPoids_2()
 {
     return m_p2;
 }
-
-double Arrete::getPoids(int test)
-{
-    if (test == 1)
-    {
-        return m_p1;
-    }else if ( test == 2 ) {
-        return m_p2;
-    }
-
-    return 1;
-}
-
-std::string Arrete::getID() const
-{
-    return m_id;
-}
-
-std::string Arrete::getS1() const
-{
-    return m_s1;
-}
-
-std::string Arrete::getS2() const
-{
-    return m_s2;
-}
-
-int Arrete::getCC()
-{
-    return m_cc;
-}
-
-void Arrete::setCC(int etat)
-{
-    m_cc = etat;
-}
-
-

@@ -2,8 +2,6 @@
 #include <fstream>
 #include <iomanip>
 #include <algorithm>
-#include <iterator>
-#include "../svgfile.h"
 
 Mgraphe::Mgraphe(std::string fichier1,std::string fichier2)
 {
@@ -34,7 +32,7 @@ Mgraphe::Mgraphe(std::string fichier1,std::string fichier2)
         ifs>>y;
         if(ifs.fail())
             throw std::runtime_error("Probleme lecture donn�es sommet : lecture y");
-        m_sommet.insert({id, new Sommet{x,y,id,i}});
+        m_sommet.insert({id, new Sommet{x,y,id}});
     }
 
     int taille;
@@ -62,6 +60,7 @@ Mgraphe::Mgraphe(std::string fichier1,std::string fichier2)
         /// la on peut remplir notre vecteur de bool
         m_sommet.find(id)->second->ajouterVoisin(m_sommet.find(id_voisin)->second, arr);
         m_sommet.find(id_voisin)->second->ajouterVoisin(m_sommet.find(id)->second, arr);
+
     }
 
     ifs2 >> ordre;
@@ -100,11 +99,6 @@ Mgraphe::Mgraphe(std::string fichier1,std::string fichier2)
     m_couleure = "red";
 }
 
-std::map<std::string, Arrete*> Mgraphe::getMapArret()
-{
-    return m_arrete;
-}
-
 void Mgraphe::afficher() const
 {
     std::cout << " Graphe : " << std::endl;
@@ -119,24 +113,15 @@ void Mgraphe::afficher() const
     std::cout << "Le cout total est (" << m_ptot1 << ";" << m_ptot2 << ")" << std::endl << std::endl;
 }
 
-void afficherSolution(std::vector<bool> vect_bin)
+void Mgraphe::afficherGraph() const
 {
-    for(size_t i = 0  ; i < vect_bin.size() ; i++)
-    {
-        std::cout<<vect_bin[i]<<" ";
-    }
-    std::cout<<" "<<std::endl;
-}
-
-bool Mgraphe::afficherGraph(std::string indice) const
-{
-    if(m_chemin.find(indice) != m_chemin.end())
-    {
-        afficherSolution(m_chemin.find(indice)->second);
-
-    std::vector<bool> vec_bin = m_chemin.find(indice)->second;
+    std::vector<bool> vec_bin;
+    vec_bin.resize(m_arrete.size() );
+    std::string name;
 
     Svgfile svgout("graphe.svg");
+
+
 
     bool select;
     int s = 0;
@@ -174,183 +159,77 @@ bool Mgraphe::afficherGraph(std::string indice) const
             svgout.addLine(xd,yd,xa,ya,"black");
         }
     }
-    return true;
-    }
-    else
-    {
-        std::cout << "ERREUR" << std::endl;
-        return false;
-    }
 }
 
 void Mgraphe::afficherGraphique()
 {
-    std::pair<double,double> coords, checkPoint = {0,0}, temponPareto, temponDraw;
+    double poids_1, poids_2;
     Arrete *arete_actuel;
-    size_t gabX = 50, gabY = 50, tailleGraphiqueY = 700, tailleGraphiqueX = 1400;
-    m_tousLesPoids.clear();
-    std::string text;
-    Svgfile graphique("graphique.svg", 2000, 1000);
-
-    graphique.addLine(gabX, gabY, gabX, tailleGraphiqueY+gabY, "black");
-    graphique.addLine(gabX, tailleGraphiqueY+gabY, tailleGraphiqueX+gabX, tailleGraphiqueY+gabY, "black");
-    graphique.addTriangle(gabX-5, gabY, gabX+5, gabY, gabX, gabY-10, "black");
-    graphique.addTriangle(tailleGraphiqueX+gabX, tailleGraphiqueY+gabY+5, tailleGraphiqueX+gabX, tailleGraphiqueY+gabY-5, tailleGraphiqueX+gabX+10, tailleGraphiqueY+gabY, "black");
-    graphique.addText(gabX-47, gabY, "cout 1", "grey");
-    graphique.addText(tailleGraphiqueX+gabX-20, tailleGraphiqueY+gabY+20, "cout 2", "grey");
+    Svgfile graphique("graphique.svg");
 
     for(auto& graphe : m_chemin)
     {
-        coords = {0,0};
+        poids_1 = 0;
+        poids_2 = 0;
         for(size_t j = 0 ; j < m_arrete.size() ; j++)
         {
-            if(graphe.second[m_arrete.size()-1-j] == true)
+           // std::cout << "========================>" << j << " ; " << graphe.second[j] << std::endl;
+            if(graphe.second[m_arrete.size() - 1 - j] == true)
             {
-                ///On compte le poids total de chacunes des possibilités
-
                 arete_actuel = m_arrete.find(std::to_string(j))->second;
-                coords.first += arete_actuel->getPoids_1();
-                coords.second += arete_actuel->getPoids_2();
+                //arete_actuel->afficher();
+                poids_1 += arete_actuel->getPoids_1();
+                poids_2 += arete_actuel->getPoids_2();
             }
+            //std::cout << "-------------->" << poids_1 << " ; " << poids_2 << std::endl;
         }
-
-        if(coords.first+coords.second < checkPoint.first+checkPoint.second || checkPoint.first+checkPoint.second == 0)
-        {
-            ///On cherche le premier point de référence pour la frontière de Pareto
-
-            checkPoint = coords;
-        }
-
-        ///On rempli notre tableau de point et on dessine tous les points
-
-        m_tousLesPoids.push_back(coords);
-        graphique.addDisk(gabX+tailleGraphiqueX*coords.first/m_ptot1, tailleGraphiqueY+gabY-tailleGraphiqueY*coords.second/m_ptot2, 2.0, "red");
-    }
-
-    ///On dessine le premier point de référence pour la frontière de Pareto
-
-    graphique.addDisk(gabX+tailleGraphiqueX*checkPoint.first/m_ptot1, tailleGraphiqueY+gabY-tailleGraphiqueY*checkPoint.second/m_ptot2, 3.0, "green");
-    text = std::to_string((int)checkPoint.first) + " ; " + std::to_string((int)checkPoint.second);
-    graphique.addText(gabX+tailleGraphiqueX*checkPoint.first/m_ptot1-50, tailleGraphiqueY+gabY-tailleGraphiqueY*checkPoint.second/m_ptot2+10, text, "grey");
-
-    std::sort(m_tousLesPoids.begin(), m_tousLesPoids.end(), [](std::pair<double,double> coords_1, std::pair<double,double> coords_2)
-    {
-        return coords_1.first < coords_2.first;
-    });
-    temponPareto = checkPoint;
-    for(size_t i = 0 ; i < m_tousLesPoids.size()-1 ; i++)
-    {
-        if(m_tousLesPoids[i].first > checkPoint.first)
-        {
-            if(m_tousLesPoids[i].second < temponPareto.second)
-            {
-                ///On dessine les points de Pareto de droite
-
-                temponPareto = m_tousLesPoids[i];
-                graphique.addDisk(gabX+tailleGraphiqueX*m_tousLesPoids[i].first/m_ptot1, tailleGraphiqueY+gabY-tailleGraphiqueY*m_tousLesPoids[i].second/m_ptot2, 3.0, "green");
-            }
-        }
-    }
-
-    std::sort(m_tousLesPoids.begin(), m_tousLesPoids.end(), [](std::pair<double,double> coords_1, std::pair<double,double> coords_2)
-    {
-        return coords_1.second < coords_2.second;
-    });
-    temponPareto = checkPoint;
-    for(size_t i = 0 ; i < m_tousLesPoids.size()-1 ; i++)
-    {
-        if(m_tousLesPoids[i].second > checkPoint.second)
-        {
-            if(m_tousLesPoids[i].first < temponPareto.first)
-            {
-                ///On dessine les points de Pareto de gauche
-
-                temponPareto = m_tousLesPoids[i];
-                graphique.addDisk(gabX+tailleGraphiqueX*m_tousLesPoids[i].first/m_ptot1, tailleGraphiqueY+gabY-tailleGraphiqueY*m_tousLesPoids[i].second/m_ptot2, 3.0, "green");
-            }
-        }
+        graphique.addDisk(50+10*poids_1, 500-10*poids_2, 2.0, "red");
+        //m_tousLesPoids.push_back({poids_1, poids_2});
     }
 }
 
-void Mgraphe::dijktra()
+
+bool Mgraphe::ordre(std::vector<bool> vect_binaire)
 {
-    /*size_t gabX = 50, gabY = 50, tailleGraphiqueY = 700, tailleGraphiqueX = 1400;
-    Svgfile graphique("graphique_dijktra.svg", 2000, 1000);
+    int nb_sommet = m_sommet.size();
+    int compteur = 0;
 
-    for(auto& graphe : m_chemin)
+    for(const auto& binary : vect_binaire)
     {
-        std::map<std::string,Arrete*> map_arrete_dijktra;
-        std::map<std::string,std::pair<double,double>> map_poids_dijktra;
-        std::map<std::string,std::pair<double,double>> map_poids_dijktra_finale;
-        std::pair<std::string,std::pair<double,double>> paire_minimum = {"0", {0,0}};
-
-        for(size_t j = 0 ; j < m_arrete.size() ; j++)
+        if (binary == 1)
         {
-            if(graphe.second[m_arrete.size()-1-j] == true)
-            {
-                map_arrete_dijktra.insert(*m_arrete.find(std::to_string(j)));
-                std::cout << "On insert un nouveau truc dans map_arrete_dijktra " << std::endl;
-            }
+            compteur++;
+            if (compteur >= nb_sommet)
+                return false;
         }
+    }
 
-        while(map_poids_dijktra_finale.size() <= m_sommet.size())
-        {
-            for(auto& paire_arrete : map_arrete_dijktra)
-            {
-                std::string sommet_id;
-                for(auto& sommet : m_sommet)
-                {
-                    if(sommet.second->trouverArrete(paire_arrete.second))
-                    {
-                        sommet_id = sommet.first;
-                        break;
-                    }
-                }
-                std::cout << paire_minimum.first  << " ; " << sommet_id << std::endl;
-                if(sommet_id == paire_minimum.first)
-                {
-                    std::cout << "sefbvs : " << paire_minimum.first << std::endl;
-                    std::pair<std::string,std::pair<double,double>> paire_temop = {paire_minimum.first, {paire_arrete.second->getPoids_1() + paire_minimum.second.first, paire_arrete.second->getPoids_2() + paire_minimum.second.second} };
-                    //map_poids_dijktra.insert(sommet_id, std::make_pair(paire_arrete.second->getPoids_1() + paire_minimum.second.first, paire_arrete.second->getPoids_2() + paire_minimum.second.second));
-                    map_poids_dijktra.insert(paire_temop);
-                    std::cout << "paire_temop => " << paire_temop.first << std::endl;
-                }
-            }
-
-            auto it = std::min_element(map_poids_dijktra.begin(), map_poids_dijktra.end(),[](const std::pair<std::string, std::pair<double,double>>& p1, const std::pair<std::string, std::pair<double,double>>& p2)
-            {
-                return p1.second.second < p2.second.second;
-            });
-
-            for(auto& paire : map_poids_dijktra)
-            {
-                if(paire.second.second < paire_minimum.second.second || paire_minimum.second.second == 0)
-                {
-                    paire_minimum = paire;
-                }
-            }
-            paire_minimum = *it;
-            map_poids_dijktra.erase(it);
-            map_poids_dijktra_finale.insert(paire_minimum);
-            system("pause");
-        }
-        unsigned int poidsTotalGraphe_1 = 0, poidsTotalGraphe_2 = 0;
-        for(auto& finale : map_poids_dijktra_finale)
-        {
-            poidsTotalGraphe_1 += (unsigned int)finale.second.first;
-            poidsTotalGraphe_2 += (unsigned int)finale.second.second;
-        }
-        graphique.addDisk(gabX+tailleGraphiqueX*poidsTotalGraphe_1/1000, tailleGraphiqueY+gabY-tailleGraphiqueY*poidsTotalGraphe_2/1000, 2.0, "red");
-    }*/
+    if(compteur < nb_sommet - 1)
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
 }
 
-
-bool Mgraphe::trouverSommet(Arrete*A1,std::map<std::string, int> &vect_somm)
+bool Mgraphe::connexe(std::vector<bool> vect_bin)
 {
     bool select;
-    int s =0;
+    //std::vector<std::string> vect_somm;
+    int s = 0;
+    std::string s1, s2;
+    std::map<std::string, int> vect_somm;
 
-    for(const auto&it : m_sommet)
+
+    for(size_t i = 0 ; i < m_arrete.size() ; i++)
+    {
+        if(vect_bin[vect_bin.size() - 1 - i] == 1)
+        {
+            Arrete*A1 = m_arrete.find( std::to_string(i) ) -> second ;
+
+            for(const auto&it : m_sommet)
             {
                 select = it.second->trouverArrete(A1);
                 if(select == true )
@@ -358,298 +237,88 @@ bool Mgraphe::trouverSommet(Arrete*A1,std::map<std::string, int> &vect_somm)
                     s++;
                     if(s == 1)
                     {
-                        // vect_somm.push_back(it.second->getID());
-                        vect_somm.insert({it.second->getID(), 0});
+                       // vect_somm.push_back(it.second->getID());
+                       vect_somm.insert({it.second->getID(), 0});
                     }
                     if(s == 2)
                     {
                         //vect_somm.push_back(it.second->getID());
-                       vect_somm.insert({it.second->getID(), 1});
-                       return true;
+                        vect_somm.insert({it.second->getID(), 1});
                     }
                 }
             }
-                return true;
+            s=0;
+        }
+    }
+    if (vect_somm.size() == m_sommet.size())
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
-bool Mgraphe::connexe1(int i,int etat)
+void afficherSolution(std::vector<bool> vect_bin)
 {
-      m_arrete.find( std::to_string(i) ) -> second ->setCC(etat);
-      return (*this).Verifier_connex();
+    for(size_t i = 0  ; i < vect_bin.size() ; i++)
+    {
+        std::cout<<vect_bin[i]<<" ";
+    }
+    std::cout<<" "<<std::endl;
 }
 
-bool Mgraphe::Verifier_connex()
-{
-    bool selec = false;
-    int s = 0;
-    for(const auto&it : m_sommet)
-            {
-                selec = it.second->verifier_connex();
-                if(selec == true)
-                {
-                    return true;
-                }
-            }
-            //std::cout<<"true/false "<<a<<std::endl;
-            return false;
-}
-
-
-
-
-bool Mgraphe::increment(std::vector<bool> &vec_bin)
+void increment(std::vector<bool> &vec_bin)
 {
     int i = vec_bin.size() -1 ;
-    int refe=0;
-    int taille;
-    int prec1,prec2;
-    bool a = false;
 
     do
     {
-        if( (vec_bin[i] == 0)&&(vec_bin[i+1] == 1) )
+
+        if(vec_bin[i] == 0)
         {
             vec_bin[i] = 1;
-            a = (*this).connexe1(vec_bin.size() -1 - i,1);
+            i = 1000;
 
-            vec_bin[i+1] = 0;
-             a = (*this).connexe1(vec_bin.size() -1 - (i+1),0);
-            if(refe == 1)
+        }
+
+        else if( vec_bin[i] == 1 )
+        {
+            vec_bin[i] = 0;
+            i--;
+            if(i < 0)
             {
-                taille = vec_bin.size() -1 -(i+1);
-                taille =taille/2;
-
-                for(int j=0 ; j < taille ; j++)
-                {
-                    prec1 = vec_bin[i+2+j];
-                    prec2 = vec_bin[ vec_bin.size() -1 -j];
-
-                    vec_bin[i+2+j] = prec2;
-                    a = (*this).connexe1(vec_bin.size() -1 - (i+2+j),prec2);
-
-                    vec_bin[ vec_bin.size() -1 -j] = prec1;
-                    a = (*this).connexe1(vec_bin.size() -1 - (vec_bin.size() -1 - j),prec1);
-                }
-                i= 1000;
+                i = 1000;
             }
+        }
 
-            i = 1000;
 
-        }
-        else if( (vec_bin[i] == 0)&&(i == vec_bin.size() -1) )
-        {
-            refe = 1;
-            i--;
-        }
-        else
-        {
-            i--;
-        }
-        if(i < 0)
-        {
-            i = 1000;
-        }
     }
     while(i < 1000);
 
-return a;
+
 }
 
-void Mgraphe::departcpt(std::vector<bool>&vec_bin,int nbarrete)
-{
-    int i =  vec_bin.size() -1;
-    int nb = 0;
-
-    while(nb != nbarrete -1)
-    {
-        vec_bin[i] = 1;
-        (*this).connexe1(vec_bin.size() -1 -i ,1);
-        i--;
-        nb++;
-    }
-    //afficherSolution(vec_bin);
-}
-
-void Mgraphe::arrivecpt(std::vector<bool>&vec_bin,int nbarrete)
-{
-    int i = 0;
-    int nb = 0;
-
-    while(nb != nbarrete - 1)
-    {
-        vec_bin[i] = 1;
-        i++;
-        nb++;
-    }
-    //afficherSolution(vec_bin);
-}
-
-void Mgraphe::trouverSolution(int nbarrete,int&nom)
+void Mgraphe::trouverSolution()
 {
     std::vector<bool> vect_bin;
-    bool a = false;
-    std::vector<bool> vect_bina;
-    vect_bina.resize( m_arrete.size() );
-
-    for(size_t i = 0 ; i < m_arrete.size()  ; ++i)
-    {
-        vect_bin.push_back(0);
-        (*this).connexe1(i,0);
-    }
-
+    vect_bin.resize(m_arrete.size() );
     std::string name;
-    (*this).departcpt(vect_bin, nbarrete);
-    (*this).arrivecpt(vect_bina, nbarrete);
-    //afficherSolution(vect_bin);
-    //afficherSolution(vect_bina);
 
-    do
+    for(long i = 0 ; i < pow( 2, m_arrete.size() ) ; i++ )
     {
+        increment(vect_bin) ;
+        if( (*this).ordre(vect_bin) == true )
+        {
 
-        a = (*this).increment(vect_bin) ;
-            //afficherSolution(vect_bin);
-            if( a == false )
+            if( (*this).connexe(vect_bin) == true )
             {
-                nom++;
-                //afficherSolution(vect_bin);
-                name = "bf" + std::to_string(nom);
+                afficherSolution(vect_bin);
+                name = "bf" + std::to_string(i);
                 m_chemin.insert({name,vect_bin});
             }
 
-        //}
-    }
-    while(vect_bin != vect_bina);
-
-    //std::cout<<m_chemin.size()<<std::endl;
-}
-
-std::vector<bool> Mgraphe::kruskal(std::string fichier, std::string fichier2, int test)
-{
-    Mgraphe main{fichier, fichier2};
-
-    Arrete* arret;
-    bool select;
-    int s = 0;
-    int cc1, cc2;
-
-    std::map<std::string, Arrete*> map_arrete;
-    std::vector<Arrete*> vect_arretes;
-    std::string somm1, somm2;
-    std::string name;
-
-    Sommet* Soomet1, *Soomet2;
-
-    std::vector<bool> vect_bin;
-    vect_bin.resize(m_arrete.size() );
-
-    map_arrete = main.getMapArret();
-
-    for (const auto &a : m_arrete)
-    {
-        vect_arretes.push_back(a.second);
-    }
-
-    if (test == 1)
-    {
-        std::sort(vect_arretes.begin(), vect_arretes.end(), [](Arrete* s1, Arrete* s2)
-        {
-            return s1->getPoids(1) > s2->getPoids(1);
-        });
-        name = "k1";
-    }
-    else if(test == 2)
-    {
-        std::sort(vect_arretes.begin(), vect_arretes.end(), [](Arrete* s1, Arrete* s2)
-        {
-            return s1->getPoids(2) > s2->getPoids(2);
-        });
-        name = "k2";
-    }
-
-    while (vect_arretes.size() != 0)
-    {
-
-        arret = vect_arretes[vect_arretes.size()-1];
-
-        for (const auto&it : m_sommet)
-        {
-            select = it.second->trouverArrete(arret);
-            if(select == true )
-            {
-                s++;
-                if(s == 1)
-                {
-                    somm1 = it.second->getID();
-                    Soomet1 = main.getSommet(somm1);
-                    cc1 = Soomet1->getCC();
-                }
-                if(s == 2)
-                {
-                    somm2 = it.second->getID();
-                    Soomet2 = main.getSommet(somm2);
-                    cc2 = Soomet2->getCC();
-                }
-            }
-        }
-        s = 0;
-        if (cc1 != cc2 )
-        {
-            int id_arret = 0;
-            id_arret = atoi((arret->getID()).c_str());
-            vect_bin[m_arrete.size() - 1 - id_arret] = 1;
-            main.changerTousCC(cc1, cc2);
-
-        }
-        vect_arretes.pop_back();
-    }
-    m_chemin.insert({name,vect_bin});
-    return vect_bin;
-}
-
-void Mgraphe::changerTousCC(int Cd, int Ca)
-{
-    for ( auto &s : m_sommet)
-    {
-        if(s.second->getCC() == Ca)
-        {
-            s.second->setCC(Cd);
         }
     }
 }
-
-Sommet* Mgraphe::getSommet(std::string id)
-{
-    return m_sommet.find(id)->second;
-}
-
-void Mgraphe::trouverSolucemin()
-{
-    for(auto&it : m_chemin)
-    {
-        it.second.clear();
-    }
-    m_chemin.clear();
-    int nom = 0;
-    (*this).trouverSolution( m_sommet.size(),nom);
-}
-
-void Mgraphe::trouvertouteSoluce()
-{
-    for( auto&it : m_chemin)
-    {
-        it.second.clear();
-    }
-    m_chemin.clear();
-    int nom = 0;
-
- size_t taille = m_arrete.size() - m_sommet.size() +1;
- //std::cout<<taille;
-    for(size_t i = 0 ; i <= taille  ; i++)
-    {
-    //std::cout<<i;
-    (*this).trouverSolution( m_sommet.size() + i,nom);
-    }
-}
-
-
-

@@ -5,29 +5,21 @@
 #include <vector>
 #include "Arrete.h"
 #include "Sommet.h"
+#include "svgfile.h"
 
 class Mgraphe
 {
 public :
      Mgraphe(std::string fichier1,std::string fichier2);
      void afficher() const;
-     bool afficherGraph(std::string indice) const;
-    bool increment(std::vector<bool> &vec_bin);
+     void afficherGraph() const;
+     bool ordre(std::vector<bool> vect_binaire);
+     bool connexe(std::vector<bool> vect_bin);
+     friend void increment(std::vector<bool> &vec_bin);
      friend void afficherSolution(std::vector<bool> vect_bin);
-    void departcpt(std::vector<bool>&vec_bin,int nbarrete);
-    void arrivecpt(std::vector<bool>&vec_bin,int nbarrete);
-     void trouverSolution(int nbarrete,int&nom);
-     void afficherGraphique();
-     std::vector<bool> kruskal(std::string fichier, std::string fichier2, int test);
-     std::map<std::string , Arrete*> getMapArret();
-     void dijktra();
-     Sommet* getSommet(std::string id);
-     void changerTousCC(int Cd, int Ca);
-     bool trouverSommet(Arrete*A1,std::map<std::string, int> &vect_somm);
-     bool Verifier_connex();
-     bool connexe1(int i,int etat);
-     void trouverSolucemin();
-     void trouvertouteSoluce();
+     void trouverSolution();
+    void afficherGraphique();
+
 private :
     std::map<std::string , Sommet*> m_sommet;
     std::map<std::string , Arrete*> m_arrete;

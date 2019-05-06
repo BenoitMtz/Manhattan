@@ -1,7 +1,7 @@
 #include "../Sommet.h"
 
-Sommet::Sommet(double x_init ,double y_init,std::string id_init, int cc_init)
-:m_id{id_init}, m_cc{cc_init}, m_x{x_init} , m_y{y_init}
+Sommet::Sommet(double x_init,double y_init,std::string id_init)
+:m_id{id_init}, m_x{x_init} , m_y{y_init}
 {
 
 }
@@ -49,11 +49,6 @@ std::string Sommet::getID()
     return m_id;
 }
 
-std::map<Sommet*,Arrete*> Sommet::getNeighbour()
-{
-    return m_voisin;
-}
-
 bool Sommet::trouverArrete(Arrete*A1)
 {
     for(const auto&it : m_voisin)
@@ -65,41 +60,4 @@ bool Sommet::trouverArrete(Arrete*A1)
     }
     return false ;
 }
-
-std::string Sommet::trouverSommetID(Arrete*A1)
-{
-    std::string erreur("Erreur de recherche du sommet correspondant a cette arete.");
-    for(const auto&it : m_voisin)
-    {
-        if(it.second == A1)
-        {
-            return it.first->getID();
-        }
-    }
-    return erreur;
-}
-
-int Sommet::getCC()
-{
-    return m_cc;
-}
-
-void Sommet::setCC(int Ca)
-{
-    m_cc = Ca;
-}
-
-bool Sommet::verifier_connex()
-{
-    for(const auto&it : m_voisin)
-    {
-        if(it.second->getCC() != 0)
-        {
-            return false ;
-        }
-    }
-    return true ;
-}
-
-
 
